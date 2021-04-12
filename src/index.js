@@ -34,6 +34,7 @@ ReactDOM.render(
         path="/layoutlogin"
         render={(props) => <Layoutlogin {...props}  />}
       />
+      {/**/}
       <Route
       path="/layoutpage"
       render={(props) => <Layoutpage {...props}  />}
