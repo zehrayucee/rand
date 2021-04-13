@@ -55,7 +55,7 @@ function layoutlogin() {
               </Card>
             </Col>
           </Row>
-        </Container>
+                </Container>
         <div className="footer register-footer text-center">
           <h6>
             © {new Date().getFullYear()}
