@@ -16,6 +16,7 @@ import Layoutpage from "components/layout/layoutpage.js";
 
 // pages
 import Randone from "components/Pages/randone.js";
+import Customercreate from "components/Pages/customercreate.js";
 
 
 //import LandingPage from "views/examples/LandingPage.js";
@@ -42,6 +43,10 @@ ReactDOM.render(
       <Route
         path="/randone"
         render={(props) => <Randone {...props} />}
+      />
+      <Route
+        path="/customercreate"
+        render={(props) => <Customercreate {...props} />}
       />
      
      
