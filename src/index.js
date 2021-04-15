@@ -6,7 +6,7 @@ import "bootstrap/scss/bootstrap.scss";
 //import "assets/scss/paper-kit.scss?v=1.3.0";
 import "../src/assets/css/randcss.css"; //paper-kit
 import "assets/demo/demo.css?v=1.3.0";
-import "../src/assets/css/style.css";
+// import "../src/assets/css/style.css";
 
 import Index from "views/Index.js";
 //layout
@@ -15,7 +15,8 @@ import Layoutlogin from "components/layout/layoutlogin.js";
 import Layoutpage from "components/layout/layoutpage.js";
 
 // pages
-import randone from "components/Pages/randone.js";
+import Randone from "components/Pages/randone.js";
+
 
 //import LandingPage from "views/examples/LandingPage.js";
 //import ProfilePage from "views/examples/ProfilePage.js";
@@ -34,24 +35,16 @@ ReactDOM.render(
         path="/layoutlogin"
         render={(props) => <Layoutlogin {...props}  />}
       />
-      {/**/}
       <Route
       path="/layoutpage"
       render={(props) => <Layoutpage {...props}  />}
        />
-      {/*
       <Route
-        path="/landing-page"
-        render={(props) => <LandingPage {...props} />}
+        path="/randone"
+        render={(props) => <Randone {...props} />}
       />
-      <Route
-        path="/profile-page"
-        render={(props) => <ProfilePage {...props} />}
-      />
-      <Route
-        path="/register-page"
-        render={(props) => <RegisterPage {...props} />}
-      />*/}
+     
+     
       <Redirect to="/index" />
     </Switch>
   </BrowserRouter>,
