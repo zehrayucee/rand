@@ -1483,7 +1483,7 @@ textarea.form-control {
   position: relative; }
 
 .register-form .form-control {
-  border: 1px solid transparent !important; }
+  border: 1px solid transparent ; }
 
 .register-form .input-group .form-control {
   margin-left: -1px; }
