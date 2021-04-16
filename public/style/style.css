@@ -20,6 +20,9 @@ display:"flex";
 width:"20%";
 height:"80%";
 }
+.cre{
+    margin-bottom: 4%;
+}
 
 .mrkt{
     background-color: black;
@@ -144,6 +147,41 @@ height:"80%";
     width:100% ;
     display:flex;
 
+}
+.mlta{
+    margin-left: 10%;
+}
+.mrta{
+    margin-left: 90%;
+}
+
+.mnb{
+    min-width:100%!important;
+
+}
+
+.mnbk{
+    min-width:100%;
+    margin-top:0px;
+
+}
+.dsf{
+    display: flex;
+}
+
+.plk{
+    min-width:100% ;
+    min-height: 100%;
+}
+
+.mt{
+    margin-top: 8%;
+}
+
+.ese{
+background-color: blueviolet;
+min-width: 100%;
+min-height: 100%;
 }
 
 

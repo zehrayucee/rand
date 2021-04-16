@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+
 // styles
 import "bootstrap/scss/bootstrap.scss";
-//import "assets/scss/paper-kit.scss?v=1.3.0";
 import "../src/assets/css/randcss.css"; //paper-kit
 import "assets/demo/demo.css?v=1.3.0";
-// import "../src/assets/css/style.css";
+//import "assets/scss/paper-kit.scss?v=1.3.0";
 
 import Index from "views/Index.js";
 //layout
@@ -17,12 +17,10 @@ import Layoutpage from "components/layout/layoutpage.js";
 // pages
 import Randone from "components/Pages/randone.js";
 import Customercreate from "components/Pages/customercreate.js";
+import Passwordnew from "components/Pages/passwordnew.js";
+import Customerhomepage from "components/Pages/customerhomepage.js";
 
 
-//import LandingPage from "views/examples/LandingPage.js";
-//import ProfilePage from "views/examples/ProfilePage.js";
-//import RegisterPage from "views/examples/RegisterPage.js";
-// others
 
 ReactDOM.render(
   <BrowserRouter>
@@ -48,6 +46,14 @@ ReactDOM.render(
         path="/customercreate"
         render={(props) => <Customercreate {...props} />}
       />
+      <Route
+        path="/passwordnew"
+        render={(props) => <Passwordnew {...props} />}
+      />
+      <Route
+      path="/customerhomepage"
+      render={(props) => <Customerhomepage {...props} />}
+       />
      
      
       <Redirect to="/index" />

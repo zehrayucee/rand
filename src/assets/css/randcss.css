@@ -4536,7 +4536,7 @@ License - nucleoapp.com/license/
     top: 0;
     position: absolute;
     width: 100%;
-    z-index: 1; }
+    z-index: -1; }
   .page-header.page-header-small {
     min-height: 65vh !important;
     max-height: 700px; }
