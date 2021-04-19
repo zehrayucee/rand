@@ -1,10 +1,5 @@
 import React from "react";
-// reactstrap components
-// core components
-import IndexNavbar from "../Navbars/IndexNavbar.js";
-import IndexHeader from "../Headers/IndexHeader.js";
-import DemoFooter from "../Footers/DemoFooter.js";
-//import DemoFooter from "components/Footers/DemoFooter.js";
+import DemoFooter from "../Footers/DemoFooter.js"; 
 
 import {
     Button,
@@ -12,6 +7,18 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
+    Form,
+    FormGroup,
+    Input,
+    InputGroupAddon,
+    InputGroupText,
+    InputGroup,
+    Pagination,
+    PaginationItem,
+    PaginationLink,
+    Progress,
+    TabContent,
+    TabPane,
     UncontrolledDropdown,
     NavbarBrand,
     Navbar,
@@ -19,10 +26,17 @@ import {
     NavLink,
     Nav,
     Col,
+    Row,
     Container,
   } from "reactstrap";
-
-function customerhomepage() {
+ 
+  
+export default function Customerdate() {
+    const [activeTab, setActiveTab] = React.useState("1");
+    const toggle = (tab) => {
+      if (activeTab !== tab) {
+        setActiveTab(tab);
+      }
   return (
     <> 
 <div className="page-header  section-dark dsf"
@@ -32,12 +46,12 @@ function customerhomepage() {
         alignItems:"baseline"
 }}>
 <div className="filter"/>
+{/*11111111111111111111111111111111111111111111111111111111111111 */}
 <Container>
 <div className="e  mt">
-{/*1111111111 */}
   <Navbar className="bg-primary" expand="lg">
     <NavbarBrand href="#pablo" onClick={(e) => e.preventDefault()}>
-      Randevu Sistemi
+      Randevu
     </NavbarBrand>
     <button
       aria-controls="navbarSupportedContent"
@@ -99,7 +113,7 @@ function customerhomepage() {
               href="#pablo"
               onClick={(e) => e.preventDefault()}
             >
-              Parolamı Sıfırla
+              Parolamı Yenile
             </DropdownItem>
             
           </DropdownMenu>
@@ -212,27 +226,52 @@ function customerhomepage() {
 </div>
 <div className="ese">
    <div className="eseic">
-   <div className="col-md-12 ">
-   
-   <Col md="6">
-   <Button className="btn wh ht mtb dfk " color="success" outline size="lg" type="button">
-    Randevu AL
-    </Button>
-   </Col>
-
-   <Col md="6">
-   <Button className="btn wh ht mtb dfk" color="primary" outline size="lg" type="button">
-    Randevu AL
-    </Button>
-   </Col>
-   
+   <div className="col-md-12">
+   <div className="nav-tabs-navigation">
+   <div className="nav-tabs-wrapper">
+     <Nav id="tabs" role="tablist" tabs>
+       <NavItem>
+         <NavLink
+           className={activeTab === "1" ? "active" : ""}
+           onClick={() => {
+             toggle("1");
+           }}
+         >
+           Home
+         </NavLink>
+       </NavItem>
+       <NavItem>
+         <NavLink
+           className={activeTab === "2" ? "active" : ""}
+           onClick={() => {
+             toggle("2");
+           }}
+         >
+           Profile
+         </NavLink>
+       </NavItem>
+       <NavItem>
+         <NavLink
+           className={activeTab === "3" ? "active" : ""}
+           onClick={() => {
+             toggle("3");
+           }}
+         >
+           Messages
+         </NavLink>
+       </NavItem>
+     </Nav>
    </div>
+ </div>
+ 
    </div>
+  
+          
+   </div>          
 </div>
 </Container>
 </div>
 <DemoFooter/>
 </>
-  );
-}
-export default customerhomepage;
+);
+}}
