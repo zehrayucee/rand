@@ -75,9 +75,7 @@ height:"80%";
     width: 100%;
     /*margin: 0px 0px 0px 10%;*/
 }
-/*.bir, .iki .uc .dort{
-    display: none;
-}*/
+
 
 .dtclr{
     background-color: #49505766!important;
@@ -228,4 +226,48 @@ margin: auto;
  }
  .bso{
     height: 8%;
+ }
+ .tabcls{
+     background-color: rgb(218, 218, 218);
+     width:100%;
+     height: 60%;
+ }
+ .wht{
+     min-width: 100%;
+ }
+ .htt{
+     min-height: 40%;
+ }
+ .whtp{
+     min-width: 100%;
+ }
+ .iki{
+     min-width: 80%;
+ }
+ @media screen and (max-width: 700px) {
+     .whtp{
+    min-width: 30%;
+     }
+     .iki{
+        width: 40%;    
+     }
+     .mr-auto
+     { margin-right: 10%;
+       margin-left: 6%;
+    }
+     .mw-100{
+      max-width: 10%;
+     }
+     .ta{
+         display: block;
+     }
+
+     @media screen and (max-width: 300px) {
+      .dfk{
+          font-size: 10px!important;
+      }
+     }
+ }
+ .th{
+    min-width: 100%;  
  }

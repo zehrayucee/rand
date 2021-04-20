@@ -216,12 +216,14 @@ function customerhomepage() {
    
    <Col md="6">
    <Button className="btn wh ht mtb dfk " color="success" outline size="lg" type="button">
+   <i class="fas fa-user"></i>&nbsp;
     Randevu AL
     </Button>
    </Col>
 
    <Col md="6">
    <Button className="btn wh ht mtb dfk" color="primary" outline size="lg" type="button">
+   <i class="fas fa-users"></i>&nbsp;
     Randevu AL
     </Button>
    </Col>

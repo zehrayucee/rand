@@ -37,11 +37,11 @@ function customercreate() {
         <div className="filter " />
         <Container>
           <Row >
-            <div className="iki rml-auto mr-auto mw-100">
-              <Col className=" rml-auto mr-auto mw-100 " >
+            <div className="iki rml-auto mr-auto mw-100 ">
+              <Col className=" rml-auto mr-auto mw-100  whtp" >
                 <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
 
-                  <div className="as1" /*ustdıv */
+                  <div className="as1 " /*ustdıv */
                     style={{
                       backgroundColor: "#6bd098", //#6bd098
                       width: "100%",
@@ -49,28 +49,29 @@ function customercreate() {
                       display: "flex",
                     }} >
 
-                    <div className="asic mrr col-md-6"
+                    <div className="asic mrr col-md-10"
                       style={{
                         backgroundColor: "#6bd098",
                         width: "55%",
                         height: "80%",
+                        
                       }}>
                       <div className="title text-dark text-border  " >
                         <h4><span className="note bld">Kayıt Olun</span></h4>
                       </div>
                     </div>
-                    <div className="paniation mll "
+                    <div className="paniation mll col-md-2 "
                       style={{
-                        backgroundColor: "#6bd098", //#6bd098
+                        backgroundColor: "yellow", //#6bd098
                         display: "flex",
                         width: "20%",
                         height: "80%",
                       }}>
-
                       {/*panigation (1-2)*/}
+                      
                       <nav aria-label="...">
                         <Pagination count={10} disabled>
-                          <PaginationItem className="active" >
+                          <PaginationItem  >
                             <PaginationLink
                               href="#pablo"
                               onClick={(e) => e.preventDefault()}
@@ -78,7 +79,8 @@ function customercreate() {
                               1
                   </PaginationLink>
                           </PaginationItem>
-                          <PaginationItem >
+                          
+                          <PaginationItem className="active">
                             <PaginationLink
                               href="#pablo"
                               onClick={(e) => e.preventDefault()}
@@ -167,7 +169,7 @@ function customercreate() {
                               <div className="form-group col-md-12 mt-3">
                                 <div className="row">
                                   <div className="col-md-4 pl-0 bld">
-                                    Şifre:
+                                    Şifre
                                   </div>
                                   <div className="col-md-8">
                                     <Input placeholder="Default" className="form-control" type="text" />
@@ -180,7 +182,7 @@ function customercreate() {
                               <div className="form-group col-md-12 ">
                                 <div className="row">
                                   <div className="col-md-4 bld pl-0 ">
-                                    Şifre (Tekrar) :
+                                    Şifre (Tekrar) 
                                 </div>
                                   <div className="col-md-8">
                                     <Input placeholder="Default" className="form-control" type="text" />
@@ -195,10 +197,10 @@ function customercreate() {
                           <div className="ta mt-3" >
 
                             <Button className="cre mra" color="success" outline size="lg" type="button">
-                              Temizle
+                            <i class="far fa-trash-alt"></i>&nbsp; Temizle
                  </Button>
                             <Button className="cre mla" color="info" outline size="lg" type="button">
-                              Kaydet
+                            <i class="fas fa-check"></i>&nbsp;Kaydet
                 </Button>
                           </div>
                         </Container>
@@ -355,7 +357,7 @@ function customercreate() {
                             <i class="bi bi-caret-left-fill"> </i>Düzenle  
                  </Button>
                             <Button className="cre mla" color="danger" outline size="lg" type="button">
-                              Kaydet
+                            <i class="fas fa-check"></i>&nbsp;Kaydet
                 </Button>
                           </div>
                         </Container>

@@ -17,6 +17,7 @@ import {
   Container,
 } from "reactstrap";
 
+
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
@@ -78,69 +79,16 @@ function IndexNavbar() {
         >
           <Nav navbar>
             <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="https://twitter.com/CreativeTim?ref=creativetim"
-                target="_blank"
-                title="Follow us on Twitter"
-              >
-                <i className="fa fa-twitter" />
-                <p className="d-lg-none">Twitter</p>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="https://www.facebook.com/CreativeTim?ref=creativetim"
-                target="_blank"
-                title="Like us on Facebook"
-              >
-                <i className="fa fa-facebook-square" />
-                <p className="d-lg-none">Facebook</p>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-                target="_blank"
-                title="Follow us on Instagram"
-              >
-                <i className="fa fa-instagram" />
-                <p className="d-lg-none">Instagram</p>
-              </NavLink>
-            </NavItem>
-            {/*// <NavItem>
-            //   <NavLink
-            //     data-placement="bottom"
-            //     href="https://www.github.com/CreativeTimOfficial/paper-kit-react?ref=creativetim"
-            //     target="_blank"
-            //     title="Star on GitHub"
-            //   >
-            //     <i className="fa fa-github" />
-            //     <p className="d-lg-none">GitHub</p>
-            //   </NavLink>
-            // </NavItem>
-            // <NavItem>
-            //   <NavLink
-            //     href="https://demos.creative-tim.com/paper-kit-react/#/documentation?ref=pkr-index-navbar"
-            //     target="_blank"
-            //   >
-              //  <i className="nc-icon nc-book-bookmark" /> Documentation
-              //</NavLink>
-            //</NavItem>*/}
-
-            <NavItem>
               <Button
                 className="btn-round btn-lg"
                 color="success"
                 href="https://www.creative-tim.com/product/paper-kit-pro-react?ref=pkr-index-navbar"
                 target="_blank"
               >
-                <i className="nc-icon nc-spaceship"></i> Randevu AL
+              <i class="far fa-calendar-alt"></i>&nbsp; Randevu AL
               </Button>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
+            </NavItem> 
+             <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle
                         aria-expanded={false}
                         aria-haspopup={true}
@@ -187,12 +135,48 @@ function IndexNavbar() {
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Yönetici Giriş Yap
+                          Admin Giriş Yap
                         </DropdownItem>
                         
                       </DropdownMenu>
                     </UncontrolledDropdown>
-          </Nav>
+          
+            <NavItem>
+              <NavLink
+                data-placement="bottom"
+                href="https://twitter.com/"
+                target="_blank"
+                title="Follow us on Twitter"
+              >
+                <i className="fa fa-twitter" />
+                <p className="d-lg-none">Twitter</p>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                data-placement="bottom"
+                href="https://www.facebook.com/"
+                target="_blank"
+                title="Like us on Facebook"
+              >
+                <i className="fa fa-facebook-square" />
+                <p className="d-lg-none">Facebook</p>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                data-placement="bottom"
+                href="https://www.instagram.com/"
+                target="_blank"
+                title="Follow us on Instagram"
+              >
+                <i className="fa fa-instagram" />
+                <p className="d-lg-none">Instagram</p>
+              </NavLink>
+            </NavItem>
+          
+            
+            </Nav>
         </Collapse>
       </Container>
     </Navbar>

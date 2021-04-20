@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 
 import IndexNavbar from "../Navbars/IndexNavbar.js";
-function layoutlogin() {
+function customerlogin() {
   
   return (
     <>
@@ -21,7 +21,7 @@ function layoutlogin() {
           <Row>
             <Col className="ml-auto mr-auto" lg="4">
               <Card className="card-register ml-auto mr-auto">
-                <h3 className="title mx-auto">Giriş Yapın</h3>
+                <h1 className="title mx-auto"><i class="far fa-user"></i></h1>
                
                 <Form className="register-form">
                   <label>Kullanıcı Adı:</label>
@@ -31,7 +31,7 @@ function layoutlogin() {
                   <Button  btn-lg block className="btn-round" style={{
                     backgroundColor: "#2b5659",
                   }}>
-                    Giriş Yap
+                  <i class="fas fa-user"></i>&nbsp;Giriş Yap
                   </Button>
                 </Form>
                 <div className="forgot">
@@ -40,7 +40,7 @@ function layoutlogin() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Şifremi Unuttum?
+                  <i class="fas fa-unlock"></i>&nbsp;Şifremi Unuttum?
                   </Button>
                   
                   <Button
@@ -48,7 +48,7 @@ function layoutlogin() {
                   href="#pablo"
                   onClick={(e) => e.preventDefault()}
                 >
-                  Üye OL
+                  Üye OL&nbsp;<i class="fas fa-user-plus"></i>
                 </Button>
                 
               </div>
@@ -66,4 +66,4 @@ function layoutlogin() {
   );
 }
 
-export default layoutlogin;
+export default customerlogin;

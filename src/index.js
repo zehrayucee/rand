@@ -6,12 +6,10 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "bootstrap/scss/bootstrap.scss";
 import "../src/assets/css/randcss.css"; //paper-kit
 import "assets/demo/demo.css?v=1.3.0";
-//import "assets/scss/paper-kit.scss?v=1.3.0";
 
 import Index from "views/Index.js";
 //layout
 import Layouthome from "components/layout/layouthome.js";
-import Layoutlogin from "components/layout/layoutlogin.js";
 import Layoutpage from "components/layout/layoutpage.js";
 
 // pages
@@ -21,7 +19,7 @@ import Passwordnew from "components/Pages/passwordnew.js";
 import Customerhomepage from "components/Pages/customerhomepage.js";
 import Customers from "components/Pages/customers.js";
 import Customerdate from "components/Pages/customerdate.js";
-
+import Customerlogin from "components/Pages/customerlogin.js";
 
 
 ReactDOM.render(
@@ -33,8 +31,8 @@ ReactDOM.render(
         render={(props) => <Layouthome {...props} />}
       />
       <Route
-        path="/layoutlogin"
-        render={(props) => <Layoutlogin {...props}  />}
+        path="/Customerlogin"
+        render={(props) => <Customerlogin {...props}  />}
       />
       <Route
       path="/layoutpage"
@@ -64,7 +62,7 @@ ReactDOM.render(
       path="/customerdate"
       render={(props) => <Customerdate {...props} />}
        />
-     
+       
      
       <Redirect to="/index" />
     </Switch>
