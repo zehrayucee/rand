@@ -30,6 +30,7 @@ import {
 
 
 import IndexNavbar from "../Navbars/IndexNavbar.js";
+import DemoFooter from "components/Footers/DemoFooter.js";
 function randone() {
     return (
 <>
@@ -142,7 +143,7 @@ function randone() {
                 </Row>
                 <Row>
                    <Button className="btn-round mr-1 mllt btn-lg" color="danger" type="button">
-                    Sonraki
+                    Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                    </Button>
                 </Row> 
             </Container>
@@ -154,13 +155,9 @@ function randone() {
     </Col>
   </div>
 </Row>
-</Container> 
-              
-  <div className="footer register-footer text-center">
-    <h6> © {new Date().getFullYear()}</h6>
-  </div>
+</Container>              
 </div>
-         
+        
 /*22222**************************************************************************** */ 
 <Container>
 <Row >
@@ -299,10 +296,10 @@ function randone() {
              </Row>
              <div className="ta" >
              <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button">
-              Önceki 
+             <i class="fas fa-chevron-left">&nbsp;&nbsp;</i>Önceki 
              </Button>
              <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button">
-               Sonraki
+              Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
              </Button>
               </div>
              </Container>
@@ -461,16 +458,7 @@ function randone() {
               </div>
              
               <div className="col-md-12 col-lg-6 col-sm-12">
-               <div className="bst">
-                <Button
-                className="btn-round mr-1 btn-lg "
-                color="default"
-                outline
-                type="button"
-                >
-                Güncelle
-               </Button>
-                </div>
+               <div className="bsl"></div>
                {/*text-ınput */}
                <FormGroup>
                <div className="row">
@@ -518,14 +506,27 @@ function randone() {
                 </div>
                 </FormGroup>
                  {/*t-ı*/}
+                 <div className="bst">
+                <Button
+                className="btn-round mr-1 btn-lg  kt"
+                color="default"
+                outline
+                type="button"
+                >
+                Güncelle
+               </Button>
+               <div className="bsp"></div>
+                </div>
+                
              </div>
              </div>
+             
              <div className="ta" >
              <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button">
-              Önceki 
+             <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Önceki 
              </Button>
              <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button">
-               Sonraki
+               Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
              </Button>
               </div>
              </Container>
@@ -703,10 +704,10 @@ function randone() {
              </div>
              <div className="ta" >
              <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button">
-              Önceki 
+             <i class="fas fa-chevron-left">&nbsp;&nbsp;</i>Önceki 
              </Button>
              <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button">
-               Sonraki
+               Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
              </Button>
               </div>
              </Container>

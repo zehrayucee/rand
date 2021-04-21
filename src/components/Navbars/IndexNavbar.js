@@ -111,31 +111,31 @@ function IndexNavbar() {
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Giriş Yap
+                        <i class="fas fa-user"></i>&nbsp;Giriş Yap
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Kayıt OL
+                        <i class="fas fa-user-plus"></i>&nbsp;Kayıt OL
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Dr. Giriş Yap
+                        <i class="fas fa-user-md"></i>&nbsp; Dr. Giriş Yap
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Yönetici Giriş Yap
+                        <i class="fas fa-user-tie"></i>&nbsp;  Yönetici Giriş Yap
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Admin Giriş Yap
+                        <i class="fas fa-user-cog"></i>&nbsp;  Admin Giriş Yap
                         </DropdownItem>
                         
                       </DropdownMenu>

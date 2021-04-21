@@ -40,7 +40,7 @@ function customerlogin() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                  <i class="fas fa-unlock"></i>&nbsp;Şifremi Unuttum?
+                  <i class="fas fa-unlock"></i>&nbsp;Şifremi Unuttum
                   </Button>
                   
                   <Button

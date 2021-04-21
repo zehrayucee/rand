@@ -152,7 +152,7 @@ function customerhomepage() {
           <i aria-hidden={true} className="nc-icon nc-email-85" />
         </NavLink>
       </NavItem>*/}
-      <UncontrolledDropdown nav inNavbar>
+     {/** <UncontrolledDropdown nav inNavbar>
         <DropdownToggle
           aria-expanded={false}
           aria-haspopup={true}
@@ -194,16 +194,13 @@ function customerhomepage() {
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
-
+*/} 
       <NavItem>
         <NavLink
           href="#pablo"
           onClick={(e) => e.preventDefault()}
         >
-          <i
-            aria-hidden={true}
-            className="nc-icon nc-settings-gear-65"
-          />Çıkış
+        Çıkış&nbsp;&nbsp;<i class="fas fa-times-circle"></i>
         </NavLink>
       </NavItem>
       </Nav>
