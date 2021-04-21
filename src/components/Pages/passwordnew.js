@@ -56,7 +56,7 @@ function passwordnew() {
                       height: "80%",
                     }}>
                     <div className="title text-dark text-border  " >
-                      <h4><span className="note bld">Kayıt Olun</span></h4>
+                      <h4><span className="note bld">Parola İşlemleri</span></h4>
                     </div>
                   </div>
                   <div className="paniation mll "
@@ -138,8 +138,8 @@ function passwordnew() {
                           </div>
                         <div className="ta mt-3" >
 
-                          <Button className="cre mla mr-5" color="success" outline size="lg" type="button">
-                            İleri
+                          <Button className="cre mla mr-5" color="danger" outline size="lg" type="button">
+                            İleri&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
               </Button>
                         </div>
                           </div>
@@ -179,7 +179,7 @@ function passwordnew() {
                       height: "80%",
                     }}>
                     <div className="title text-dark text-border  " >
-                      <h4><span className="note bld">Kayıt Olun</span></h4>
+                      <h4><span className="note bld">Parola İşlemleri</span></h4>
                     </div>
                   </div>
                   <div className="paniation mll "
@@ -261,8 +261,8 @@ function passwordnew() {
                           </div>
                         <div className="ta mt-3" >
 
-                          <Button className="cre mla mr-5" color="success" outline size="lg" type="button">
-                            İleri
+                          <Button className="cre mla mr-5 nbv" color="danger" outline size="lg" type="button">
+                          İleri&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
               </Button>
                         </div>
                           </div>
