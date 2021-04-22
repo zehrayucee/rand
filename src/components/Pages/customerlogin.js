@@ -1,12 +1,49 @@
-import React from "react";
+import React, { Component} from "react";
+import axios from 'axios';
 // reactstrap components
 import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
-
 import IndexNavbar from "../Navbars/IndexNavbar.js";
-function customerlogin() {
-  
-  return (
-    <>
+
+
+export default class customerlogin extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+        data:[],
+        input: "",
+        input2:""
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleChange = event => {
+    this.setState({ input: event.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const user ={
+      input: this.state.input
+    }
+    
+      axios.post("http://localhost:12283/api/TBLNOTs", {user})
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+
+  render() {
+    return (
+    <div>
+     {/**  {this.state.data.map(data=> {
+        return (
+            <div>
+              id: {data.not_txt}
+            </div>
+        )
+      })} */}       
+
     <IndexNavbar />
       
       <div
@@ -23,12 +60,12 @@ function customerlogin() {
               <Card className="card-register ml-auto mr-auto">
                 <h1 className="title mx-auto"><i class="far fa-user"></i></h1>
                
-                <Form className="register-form">
+                <Form className="register-form" onSubmit={this.handleSubmit}>
                   <label>Kullanıcı Adı:</label>
-                  <Input placeholder="Lütfen kullanıcı adını girin..." type="text" />
+                  <Input placeholder="Lütfen kullanıcı adını girin..." onChange={this.handleChange} type="text" />
                   <label>Şifre</label>
-                  <Input placeholder="Lütfen şifre girin..." type="password" />
-                  <Button  btn-lg block className="btn-round" style={{
+                  <Input placeholder="Lütfen şifre girin..."  type="password" />
+                  <Button  btn-lg block className="btn-round" Id="getBtn" style={{
                     backgroundColor: "#2b5659",
                   }}>
                   <i class="fas fa-user"></i>&nbsp;Giriş Yap
@@ -62,8 +99,8 @@ function customerlogin() {
           </h6>
         </div>
       </div>
-    </>
-  );
+      </div>
+      
+    )
+  }
 }
-
-export default customerlogin;
