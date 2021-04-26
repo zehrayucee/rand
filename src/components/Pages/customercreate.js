@@ -1,6 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { displayPartsToString } from "typescript";
 import ReactDatetime from "react-datetime";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import axios from 'axios';
 import {
   Button,
   Label,
@@ -24,8 +27,56 @@ import {
   UncontrolledPopover,
 } from "reactstrap";
 
+
 import IndexNavbar from "../Navbars/IndexNavbar.js";
-function customercreate() {
+class  Customercreate extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      tc:"",
+      name:"",
+      lastname:"",
+      fathername:"",
+      datetime:"",
+      passw:"",
+    }
+  }
+    handleReset = () => {
+      Array.from(document.querySelectorAll("input")).forEach(
+        input => (input.value = "")
+      );
+      this.setState({
+        itemvalues: [{}]
+      });
+
+      this.onChangeHandle =this.onChangeHandle.bind(this)
+    }
+    
+    clıckkopy = () => {}
+componentDidMount(){
+  var bu = this
+  axios.get("http://localhost:12283/api/TBLNOTs").then(res=>{
+    bu.setState({
+    tc: res.data[0].not_txt, 
+    name: res.data[0].not_txt,
+    lastname: res.data[0].not_txt,
+    fathername: res.data[0].not_date,
+    datebird: res.data[0].not_txt,
+    passw: res.data[0].not_txt})
+
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+onChangeHandle(key) {
+  return e => {
+      this.setState({
+          [key]: e.target.value
+      });
+  }
+}
+  render() {
   return (
     <>
       <IndexNavbar />
@@ -37,7 +88,7 @@ function customercreate() {
         <div className="filter " />
         <Container>
           <Row >
-            <div className="iki rml-auto mr-auto mw-100 ">
+            <div className="bir rml-auto mr-auto mw-100 ">
               <Col className=" rml-auto mr-auto mw-100  whtp" >
                 <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
 
@@ -109,7 +160,7 @@ function customercreate() {
                                     Tc Kimlik NO
                      </div>
                                   <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
+                                    <Input placeholder="Default" type="text" value={this.state.tc}  onChange={this.onChangeHandle("tc")}/>
                                   </div>
                                 </div>
                               </FormGroup>
@@ -121,7 +172,7 @@ function customercreate() {
                                     Ad
                      </div>
                                   <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
+                                    <Input placeholder="Default" type="text"  value={this.state.name} onChange={this.onChangeHandle("name")}   />
                                   </div>
                                 </div>
                               </FormGroup>
@@ -133,7 +184,7 @@ function customercreate() {
                                     Soyad
                      </div>
                                   <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
+                                    <Input placeholder="Default" type="text" value={this.state.lastname} onChange={this.onChangeHandle("lastname")} />
                                   </div>
                                 </div>
                               </FormGroup>
@@ -145,7 +196,7 @@ function customercreate() {
                                     Baba Adı
                      </div>
                                   <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
+                                    <Input placeholder="Default" type="text" value={this.state.fathername} onChange={this.onChangeHandle("fathername")}/>
                                   </div>
                                 </div>
                               </FormGroup>
@@ -157,7 +208,7 @@ function customercreate() {
                                     Doğum Tarihi
                      </div>
                                   <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
+                                    <Input placeholder="Default" type="text" value={this.state.datebird} onChange={this.onChangeHandle("datebird")}/>
                                   </div>
                                 </div>
                               </FormGroup>
@@ -185,7 +236,7 @@ function customercreate() {
                                     Şifre (Tekrar) 
                                 </div>
                                   <div className="col-md-8">
-                                    <Input placeholder="Default" className="form-control" type="text" />
+                                    <Input placeholder="Default" className="form-control" type="text" value={this.state.passw} onChange={this.onChangeHandle("passw")}/>
                                   </div>
                                 </div>
                               </div>
@@ -196,10 +247,10 @@ function customercreate() {
 
                           <div className="ta mt-3" >
 
-                            <Button className="cre mra" color="success" outline size="lg" type="button">
-                            <i class="far fa-trash-alt"></i>&nbsp; Temizle
+                            <Button className="cre mra" color="success" outline size="lg" type="Button" onClick = {this.handleReset}>
+                            <i class="far fa-trash-alt"></i>&nbsp; Temizle 
                  </Button>
-                            <Button className="cre mla" color="info" outline size="lg" type="button">
+                            <Button className="cre mla" color="info" outline size="lg" type="button" onClick={this.onSubmit} >
                             <i class="fas fa-check"></i>&nbsp;Kaydet
                 </Button>
                           </div>
@@ -287,7 +338,17 @@ function customercreate() {
                               <FormGroup className="mt-3">
                                 <div className="row">
                                   <div className="col-md-4 bld">
-                                    Tc Kimlik NO
+                                    {this.props.tc}
+                     </div>
+                                  
+                                </div>
+                              </FormGroup>
+                              {/*t-ı*/}
+                              {/*text-ınput */}
+                              <FormGroup>
+                                <div className="row">
+                                  <div className="col-md-4 bld" >
+                                    {this.props.name}
                      </div>
                                   
                                 </div>
@@ -297,17 +358,7 @@ function customercreate() {
                               <FormGroup>
                                 <div className="row">
                                   <div className="col-md-4 bld">
-                                    Ad
-                     </div>
-                                  
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bld">
-                                    Soyad
+                                    {this.props.lastname}
                      </div>
                                   
                                 </div>
@@ -317,7 +368,7 @@ function customercreate() {
                               <FormGroup>
                                 <div className="row">
                                   <div className="col-md-4 bld ">
-                                    Baba Adı
+                                    {this.props.fathername}
                      </div>
                                  
                                 </div>
@@ -327,7 +378,7 @@ function customercreate() {
                               <FormGroup>
                                 <div className="row">
                                   <div className="col-md-4 bld">
-                                    Doğum Tarihi
+                                    {this.props.datebird}
                      </div>
                                   
                                 </div>
@@ -340,7 +391,7 @@ function customercreate() {
                               <div className="form-group col-md-12 mt-3">
                                 <div className="row">
                                   <div className="col-md-6 pl-0 bld">
-                                    Şifre:
+                                    {this.props.passw}
                                   </div>
                                   
                                 </div>
@@ -354,9 +405,9 @@ function customercreate() {
                           <div className="ta mt-3" >
 
                             <Button className="cre mra" color="success" outline size="lg" type="button">
-                            <i class="bi bi-caret-left-fill"> </i>Düzenle  
+                            <i class="bi bi-caret-left-fill"> </i><Link to="/customercreate">Düzenle</Link>  
                  </Button>
-                            <Button className="cre mla" color="danger" outline size="lg" type="button">
+                            <Button className="cre mla" color="danger" outline size="lg" type="button" onClick={this.onSubmit}>
                             <i class="fas fa-check"></i>&nbsp;Kaydet
                 </Button>
                           </div>
@@ -378,5 +429,5 @@ function customercreate() {
     </>
   );
 }
-
-export default customercreate;
+}
+export default Customercreate;

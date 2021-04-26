@@ -16,6 +16,7 @@ import {
   Nav,
   Container,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 
 function IndexNavbar() {
@@ -85,7 +86,7 @@ function IndexNavbar() {
                 href="https://www.creative-tim.com/product/paper-kit-pro-react?ref=pkr-index-navbar"
                 target="_blank"
               >
-              <i class="far fa-calendar-alt"></i>&nbsp; Randevu AL
+              <i class="far fa-calendar-alt"></i>&nbsp; <Link to="/customerlogin">Randevu AL</Link>
               </Button>
             </NavItem> 
              <UncontrolledDropdown nav inNavbar>
@@ -111,31 +112,31 @@ function IndexNavbar() {
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                        <i class="fas fa-user"></i>&nbsp;Giriş Yap
+                        <i class="fas fa-user"></i>&nbsp;<Link to="/customerlogin">Giriş Yap</Link>
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                        <i class="fas fa-user-plus"></i>&nbsp;Kayıt OL
+                        <i class="fas fa-user-plus"></i>&nbsp;<Link to="/customercreate">Kayıt OL</Link>
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                        <i class="fas fa-user-md"></i>&nbsp; Dr. Giriş Yap
+                        <i class="fas fa-user-md"></i>&nbsp;<Link to="/customerlogin"> Dr. Giriş Yap</Link>
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                        <i class="fas fa-user-tie"></i>&nbsp;  Yönetici Giriş Yap
+                        <i class="fas fa-user-tie"></i>&nbsp;<Link to="/customerlogin">  Yönetici Giriş Yap</Link>
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                        <i class="fas fa-user-cog"></i>&nbsp;  Admin Giriş Yap
+                        <i class="fas fa-user-cog"></i>&nbsp;<Link to="/customerlogin">  Admin Giriş Yap</Link>
                         </DropdownItem>
                         
                       </DropdownMenu>

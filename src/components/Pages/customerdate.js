@@ -74,8 +74,7 @@ function Customerdate() {
       <Nav className="mr-auto" navbar>
         <NavItem>
           <NavLink
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
+            href="/index"
           >
             Anasayfa
           </NavLink>

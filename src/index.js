@@ -14,7 +14,7 @@ import Layoutpage from "components/layout/layoutpage.js";
 
 // pages
 import Randone from "components/Pages/randone.js";
-import Customercreate from "components/Pages/customercreate.js";
+import Customercreate from "components/Pages/Customercreate.js";
 import Passwordnew from "components/Pages/passwordnew.js";
 import Customerhomepage from "components/Pages/customerhomepage.js";
 import Customers from "components/Pages/customers.js";
@@ -43,7 +43,7 @@ ReactDOM.render(
         render={(props) => <Randone {...props} />}
       />
       <Route
-        path="/customercreate"
+        path="/Customercreate"
         render={(props) => <Customercreate {...props} />}
       />
       <Route
