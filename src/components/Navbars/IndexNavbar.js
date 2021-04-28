@@ -118,7 +118,7 @@ function IndexNavbar() {
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                        <i class="fas fa-user-plus"></i>&nbsp;<Link to="/customercreate">Kayıt OL</Link>
+                        <i class="fas fa-user-plus"></i>&nbsp;<Link to="/Customercreate">Kayıt OL</Link>
                         </DropdownItem>
                         <DropdownItem
                           href="#pablo"
