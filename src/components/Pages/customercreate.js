@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from 'axios';
 import IndexNavbar from "../Navbars/IndexNavbar.js";
 import {
@@ -17,7 +16,6 @@ import {
   Row,
   Col,
 } from "reactstrap";
-
 
 class  Customercreate extends Component {
 
@@ -39,13 +37,27 @@ class  Customercreate extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onChangeHandle = this.onChangeHandle.bind(this)
-    
     this.handleReset =this.handleReset.bind(this)
+    this.backTo =this.backTo.bind(this)
+    this.postt =this.postt.bind(this)
   }
 
-  deff(){
-    
+  postt(user){
+    axios.post("http://localhost:12283/api/TBLNOTs", {user})
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      }).catch(err=>{
+        console.log(err);
+      })
+      this.setState({page:2})
+      alert("aaa")
   }
+
+ backTo(){
+  this.setState({page:1})
+ }
+  
 
 
   onChangeHandle(key){
@@ -99,18 +111,11 @@ class  Customercreate extends Component {
                 this.setState({err : true});
                 }
                 else {
+                  this.setState({page:2})
+
                   
-                  axios.post("http://localhost:12283/api/TBLNOTs", {user})
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      }).catch(err=>{
-        console.log(err);
-      })
-      this.setState({page:2})
-    } 
-    }
-    
+                } 
+      }
       }
     })     
   }
@@ -336,7 +341,7 @@ class  Customercreate extends Component {
                                 </div>
                                   <div className="col-md-8">
                                     <Input placeholder="Default" className="form-control" type="text" value={this.state.passw2} onChange={this.onChangeHandle("passw2")}/>
-                                     <div className="text-danger">{this.state.err ==true ? "error"  : "" }</div>
+                                     <div className="text-danger">{this.state.err ==true ? "şifre aynı değil"  : "" }</div>
                                     </div>
                                 </div>
                               </div>
@@ -363,6 +368,7 @@ class  Customercreate extends Component {
                 </Card>
               </Col>
             </div>
+            {/*2222222222222222222222222 */}
             <div className={this.state.page == 2?'iki rml-auto mr-auto mw-100' : 'd-none'}>
             <Col className=" rml-auto mr-auto mw-100 " >
               <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
@@ -523,10 +529,10 @@ class  Customercreate extends Component {
 
                         <div className="ta mt-3" >
 
-                          <Button className="cre mra" color="success" outline size="lg" type="button">
-                          <i class="bi bi-caret-left-fill"> </i><Link to="/customercreate">Düzenle</Link>  
+                          <Button className="cre mra" color="success" outline size="lg" type="button" onClick={this.backTo}>
+                          <i class="bi bi-caret-left-fill"> </i>Düzenle 
                </Button>
-                          <Button className="cre mla" color="danger" outline size="lg" type="button" onClick={this.onSubmit}>
+                          <Button className="cre mla" color="danger" outline size="lg" type="button" onClick={this.postt}>
                           <i class="fas fa-check"></i>&nbsp;Kaydet
               </Button>
                         </div>
@@ -542,193 +548,9 @@ class  Customercreate extends Component {
         </Container>
          
         
-        {/*2222222222222222222222222 */}
+        
       </div>
-      <div className="filter " />
-        <Container>
-          <Row >
-            <div className={this.state.page == 2?'iki rml-auto mr-auto mw-100' : 'd-none'}>
-              <Col className=" rml-auto mr-auto mw-100 " >
-                <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
-
-                  <div className="as1" /*ustdıv */
-                    style={{
-                      backgroundColor: "#6bd098", //#6bd098
-                      width: "100%",
-                      height: "15%",
-                      display: "flex",
-                    }} >
-
-                    <div className="asic mrr col-md-6"
-                      style={{
-                        backgroundColor: "#6bd098",
-                        width: "55%",
-                        height: "80%",
-                      }}>
-                      <div className="title text-dark text-border  " >
-                        <h4><span className="note bld">Lütfen Kontrol Ediniz...</span></h4>
-                      </div>
-                    </div>
-                    <div className="paniation mll "
-                      style={{
-                        backgroundColor: "#6bd098", //#6bd098
-                        display: "flex",
-                        width: "20%",
-                        height: "80%",
-                      }}>
-
-                      {/*panigation (1-2)*/}
-                      <nav aria-label="...">
-                        <Pagination count={10} disabled>
-                          <PaginationItem  >
-                            <PaginationLink
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              1
-                  </PaginationLink>
-                          </PaginationItem>
-                          <PaginationItem className="active">
-                            <PaginationLink
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              2
-                  </PaginationLink>
-                          </PaginationItem>
-                        </Pagination>
-                      </nav>
-                      {/*panfinish */}
-                    </div>
-                  </div>
-
-                  <div className="as2 ">
-                    <div className="form1 mlk">
-                      <Form className="register">
-                        <Container>
-                          <div className="row">
-
-                            <div className="col-md-12 col-lg-6 col-sm-12 ml-6">
-
-                              {/*text-ınput */}
-                              <FormGroup className="mt-3">
-                                <div className="row">
-                                  <div className="col-md-4 bld">
-                                    {this.state.idtt}
-                     </div>
-                                  
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bld" >
-                                    {this.state.name}
-                     </div>
-                                  
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bld">
-                                    {this.state.lastname}
-                     </div>
-                                  
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bld ">
-                                    {this.state.fathername}
-                     </div>
-                                 
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bld">
-                                    {this.state.datebird}
-                     </div>
-                                  
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                            </div>
-
-                            <div className="col-md-12 col-lg-6 col-sm-12 ml-6 ">
-
-                               {/*text-ınput */}
-                               <FormGroup>
-                               <div className="row">
-                                 <div className="col-md-4 bld ">
-                                   {this.state.email}
-                                   </div>
-                                   </div>
-                               </FormGroup>
-                               {/*t-ı*/}
-
-                                {/*text-ınput */}
-                              <FormGroup>
-                              <div className="row">
-                                <div className="col-md-4 bld ">
-                                  {this.state.adress}
-                                  </div>
-                                  </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                               {/*text-ınput */}
-                               <FormGroup>
-                               <div className="row">
-                                 <div className="col-md-4 bld ">
-                                   {this.state.phone}
-                                   </div>
-                                   </div>
-                               </FormGroup>
-                               {/*t-ı*/}
-                                {/*text-ınput */}
-                              <FormGroup>
-                              <div className="row">
-                                <div className="col-md-4 bld ">
-                                  {this.state.passw2}
-                                  </div>
-                                  </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              
-                            </div>
-                          </div>
-
-                          <div className="ta mt-3" >
-
-                            <Button className="cre mra" color="success" outline size="lg" type="button">
-                            <i class="bi bi-caret-left-fill"> </i><Link to="/customercreate">Düzenle</Link>  
-                 </Button>
-                            <Button className="cre mla" color="danger" outline size="lg" type="button" onClick={this.onSubmit}>
-                            <i class="fas fa-check"></i>&nbsp;Kaydet
-                </Button>
-                          </div>
-                        </Container>
-                      </Form>
-                    </div>
-                  </div>
-
-                </Card>
-              </Col>
-            </div>
-          </Row>
-        </Container>
-
       
-
-
-
     </>
   );
 }
