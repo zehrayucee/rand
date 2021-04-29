@@ -19,7 +19,7 @@ import Passwordnew from "components/Pages/passwordnew.js";
 import Customerhomepage from "components/Pages/customerhomepage.js";
 import Customers from "components/Pages/customers.js";
 import Customerdate from "components/Pages/customerdate.js";
-import Customerlogin from "components/Pages/customerlogin.js";
+import Customerlogin from "components/Pages/Customerlogin.js";
 
 
 ReactDOM.render(
