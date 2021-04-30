@@ -18,7 +18,6 @@ import {
 } from "reactstrap";
 
 class  Customercreate extends Component {
-
   constructor(props){
     super(props);
     this.state={
@@ -57,9 +56,6 @@ class  Customercreate extends Component {
  backTo(){
   this.setState({page:1})
  }
-  
-
-
   onChangeHandle(key){
     return e =>{
       this.setState({
@@ -70,10 +66,7 @@ class  Customercreate extends Component {
 
   handleSubmit(e) {
     let input = this.state.input;
-   let errors = {};
-   let isValid = true;
   
-      
     e.preventDefault();
     const user ={
       idtt: this.state.idtt,
@@ -87,7 +80,6 @@ class  Customercreate extends Component {
       passw: this.state.pass,
       passw2: this.state.pass2,
     }
-
     var inputs = [].slice.call(document.getElementsByTagName("input"));
 
     [].slice.call(document.getElementsByClassName("error")).forEach(res=>{
@@ -102,18 +94,14 @@ class  Customercreate extends Component {
         e2.innerText = "Lütfen boş bırakmayınız!";
         e2.classList.add("error")
         var div = element.children;
-        
       }
       else{
         if (typeof this.state.passw !== "undefined" && typeof this.state.passw2 !== "undefined") {
-          
           if (this.state.passw != this.state.passw2) {
                 this.setState({err : true});
                 }
                 else {
                   this.setState({page:2})
-
-                  
                 } 
       }
       }
@@ -135,10 +123,7 @@ class  Customercreate extends Component {
           phone:"",
           passw:"",
           passw2:"",});
-      
-      
-
-      
+  
     }
 
   render() {
@@ -149,10 +134,10 @@ class  Customercreate extends Component {
         style={{
           backgroundImage: "url(" + require("assets/img/axa.jpg").default + ")",
         }} >
-         {/*11111111111111111111 */}
+         
         <div className="filter " />
         <Container>
-          <Row >
+          <Row >{/*11111111111111111111 */}
           <div className={this.state.page ==1 ? "bir rml-auto mr-auto mw-100 " : "d-none"}>
               <Col className=" rml-auto mr-auto mw-100  whtp" >
                 <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>

@@ -1,11 +1,6 @@
-import React from "react";
-// reactstrap components
-// core components
-import IndexNavbar from "../Navbars/IndexNavbar.js";
-import IndexHeader from "../Headers/IndexHeader.js";
+import React, { Component } from "react";
 import DemoFooter from "../Footers/DemoFooter.js";
-//import DemoFooter from "components/Footers/DemoFooter.js";
-
+import { Link } from "react-router-dom";
 import {
     Button,
     UncontrolledCollapse,
@@ -22,7 +17,8 @@ import {
     Container,
   } from "reactstrap";
 
-function customerhomepage() {
+  class  Customerhomepage extends Component {
+    render() {
   return (
     <> 
 <div className="page-header  section-dark dsf"
@@ -64,6 +60,7 @@ function customerhomepage() {
           </NavLink>
         </NavItem>
         <UncontrolledDropdown nav inNavbar>
+        
           <DropdownToggle
             aria-expanded={false}
             aria-haspopup={true}
@@ -144,57 +141,6 @@ function customerhomepage() {
       </Nav>
     
     <Nav className="ml-auto" navbar>
-     {/* <NavItem className="active">
-        <NavLink
-          href="#pablo"
-          onClick={(e) => e.preventDefault()}
-        >
-          <i aria-hidden={true} className="nc-icon nc-email-85" />
-        </NavLink>
-      </NavItem>*/}
-     {/** <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle
-          aria-expanded={false}
-          aria-haspopup={true}
-          caret
-          color="default"
-          data-toggle="dropdown"
-          href="#pablo"
-          nav
-          onClick={(e) => e.preventDefault()}
-          role="button"
-        >
-          <i
-            aria-hidden={true}
-            className="nc-icon nc-single-02"
-          />Bilgilerim
-        </DropdownToggle>
-        <DropdownMenu className="dropdown-danger" right>
-          <DropdownItem header tag="span">
-            Dropdown header
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Another action
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Something else here
-          </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Separated link
-          </DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
-*/} 
       <NavItem>
         <NavLink
           href="#pablo"
@@ -212,17 +158,19 @@ function customerhomepage() {
    <div className="col-md-12 ">
    
    <Col md="6">
+   <Link to="/randone">
    <Button className="btn wh ht mtb dfk " color="success" outline size="lg" type="button">
    <i class="fas fa-user"></i>&nbsp;
     Randevu AL
-    </Button>
+    </Button></Link>
    </Col>
 
    <Col md="6">
+   <Link to="/randone">
    <Button className="btn wh ht mtb dfk" color="primary" outline size="lg" type="button">
    <i class="fas fa-users"></i>&nbsp;
     Randevu AL
-    </Button>
+    </Button></Link>
    </Col>
    
    </div>
@@ -234,4 +182,5 @@ function customerhomepage() {
 </>
   );
 }
-export default customerhomepage;
+    }
+export default Customerhomepage;

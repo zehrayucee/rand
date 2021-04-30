@@ -1,6 +1,8 @@
-import React from "react";
+
+import React, { Component } from 'react'
 import { displayPartsToString } from "typescript";
 import ReactDatetime from "react-datetime";
+import IndexNavbar from "../Navbars/IndexNavbar.js";
 import {
   Button,
   Label,
@@ -24,8 +26,24 @@ import {
   UncontrolledPopover,
 } from "reactstrap";
 
-import IndexNavbar from "../Navbars/IndexNavbar.js";
-function passwordnew() {
+export default class passwordnew extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      page:1
+    }
+    this.epostaa =this.epostaa.bind(this)
+    this.smss =this.smss.bind(this)
+  }
+
+  epostaa(){
+    this.setState({page:2})
+   }
+
+   smss(){
+    this.setState({page:1})
+   }
+  render() {
   return (
     <>
       <IndexNavbar/>
@@ -33,11 +51,12 @@ function passwordnew() {
         style={{
           backgroundImage: "url(" + require("assets/img/axa.jpg").default + ")",
         }} >
-         {/*1111 */}
-        <div className="filter " />
+         
+        <div className="filter" />
         <Container>
         <Row >
-          <div className="iki rml-auto mr-auto mw-100">
+        {/*1111 */}
+          <div className={this.state.page ==1 ?"bir rml-auto mr-auto mw-100": "d-none" }>
             <Col className=" rml-auto mr-auto mw-100 " >
               <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
 
@@ -67,28 +86,7 @@ function passwordnew() {
                       height: "80%",
                     }}>
 
-                    {/*panigation (1-2)*/}
-                    <nav aria-label="...">
-                      <Pagination count={10} disabled>
-                        <PaginationItem className="active" >
-                          <PaginationLink
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            1
-                </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem >
-                          <PaginationLink
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            2
-                </PaginationLink>
-                        </PaginationItem>
-                      </Pagination>
-                    </nav>
-                    {/*panfinish */}
+                   
                   </div>
                 </div>
 
@@ -99,10 +97,10 @@ function passwordnew() {
                         <div className="row">
 
                         <div className="ta mt-3" >
-                          <Button className="cre mra ml-5" color="warning" outline size="lg" type="button">
+                          <Button className="cre mra ml-5" color="warning" outline size="lg" type="button"  onClick={this.smss}>
                             SMS ile
                </Button>
-                          <Button className="cre mla ml-5" color="info" outline size="lg" type="button">
+                          <Button className="cre mla ml-5" color="info" outline size="lg" type="button"  onClick={this.epostaa}>
                             E-posta ile
               </Button>
                         </div>
@@ -153,14 +151,8 @@ function passwordnew() {
               </Card>
             </Col>
           </div>
-        </Row>
-        </Container>
-        </div>
         {/*222 */}
-        <div className="filter " />
-        <Container>
-        <Row >
-          <div className="iki rml-auto mr-auto mw-100">
+          <div className={this.state.page ==2 ?"iki rml-auto mr-auto mw-100" : "d-none" }>
             <Col className=" rml-auto mr-auto mw-100 " >
               <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
 
@@ -190,28 +182,7 @@ function passwordnew() {
                       height: "80%",
                     }}>
 
-                    {/*panigation (1-2)*/}
-                    <nav aria-label="...">
-                      <Pagination count={10} disabled>
-                        <PaginationItem  >
-                          <PaginationLink
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            1
-                </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem className="active">
-                          <PaginationLink
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            2
-                </PaginationLink>
-                        </PaginationItem>
-                      </Pagination>
-                    </nav>
-                    {/*panfinish */}
+                    
                   </div>
                 </div>
 
@@ -222,10 +193,10 @@ function passwordnew() {
                         <div className="row">
 
                         <div className="ta mt-3" >
-                          <Button className="cre mra ml-5" color="warning" outline size="lg" type="button">
+                          <Button className="cre mra ml-5" color="warning" outline size="lg" type="button" onClick={this.smss}>
                             SMS ile
                </Button>
-                          <Button className="cre mla ml-5" color="info" outline size="lg" type="button">
+                          <Button className="cre mla ml-5" color="info" outline size="lg" type="button" onClick={this.epostaa}>
                             E-posta ile
               </Button>
                         </div>
@@ -278,12 +249,9 @@ function passwordnew() {
           </div>
         </Row>
         </Container>
-      
-     
-
-        
-       
+    
+       </div>
     </>
 );
 } 
-export default passwordnew;
+  }
