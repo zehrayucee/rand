@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import DemoFooter from "../Footers/DemoFooter.js";
-import { Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  useLocation
+} from "react-router-dom";
 import {
     Button,
     UncontrolledCollapse,
@@ -17,7 +21,13 @@ import {
     Container,
   } from "reactstrap";
 
+const queryString = require('query-string');
   class  Customerhomepage extends Component {
+    
+
+    componentDidMount(){
+      console.log(this.props.location);
+    }
     render() {
   return (
     <> 

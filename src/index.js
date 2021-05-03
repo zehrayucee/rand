@@ -15,9 +15,11 @@ import Layoutpage from "components/layout/layoutpage.js";
 // pages
 import Randone from "components/Pages/randone.js";
 import Customercreate from "components/Pages/Customercreate.js";
-import Passwordnew from "components/Pages/passwordnew.js";
-import Customerhomepage from "components/Pages/customerhomepage.js";
-import Customers from "components/Pages/customers.js";
+import Passwordnew from "components/Pages/Passwordnew.js";
+import Customerhomepage from "components/Pages/Customerhomepage.js";
+import Customerid from "components/Pages/Customerid.js";
+import Customerpassword from "components/Pages/Customerpassword.js";
+import Customercontact from "components/Pages/Customercontact.js";
 import Customerdate from "components/Pages/customerdate.js";
 import Customerlogin from "components/Pages/Customerlogin.js";
 
@@ -47,16 +49,24 @@ ReactDOM.render(
         render={(props) => <Customercreate {...props} />}
       />
       <Route
-        path="/passwordnew"
+        path="/Passwordnew"
         render={(props) => <Passwordnew {...props} />}
       />
       <Route
-      path="/customerhomepage"
+      path="/Customerhomepage"
       render={(props) => <Customerhomepage {...props} />}
        />
        <Route
-      path="/customers"
-      render={(props) => <Customers {...props} />}
+      path="/Customerid"
+      render={(props) => <Customerid {...props} />}
+       />
+       <Route
+      path="/Customerpassword"
+      render={(props) => <Customerpassword {...props} />}
+       />
+       <Route
+      path="/Customercontact"
+      render={(props) => <Customercontact {...props} />}
        />
        <Route
       path="/customerdate"

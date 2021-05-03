@@ -79,16 +79,18 @@ function IndexNavbar() {
           isOpen={navbarCollapse}
         >
           <Nav navbar>
+          <Link to="/randone">
             <NavItem>
               <Button
                 className="btn-round btn-lg"
+               
                 color="success"
-                href="https://www.creative-tim.com/product/paper-kit-pro-react?ref=pkr-index-navbar"
                 target="_blank"
               >
-              <i class="far fa-calendar-alt"></i>&nbsp; <Link to="/customerlogin">Randevu AL</Link>
+              <i class="far fa-calendar-alt"></i>&nbsp; Randevu AL
               </Button>
             </NavItem> 
+            </Link>
              <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle
                         aria-expanded={false}
@@ -108,36 +110,30 @@ function IndexNavbar() {
                         aria-labelledby="dropdownMenuButton"
                         className="dropdown-info"
                       >
-                        <DropdownItem
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                        <i class="fas fa-user"></i>&nbsp;<Link to="/customerlogin">Giriş Yap</Link>
-                        </DropdownItem>
-                        <DropdownItem
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                        <i class="fas fa-user-plus"></i>&nbsp;<Link to="/Customercreate">Kayıt OL</Link>
-                        </DropdownItem>
-                        <DropdownItem
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                        <i class="fas fa-user-md"></i>&nbsp;<Link to="/customerlogin"> Dr. Giriş Yap</Link>
-                        </DropdownItem>
-                        <DropdownItem
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                        <i class="fas fa-user-tie"></i>&nbsp;<Link to="/customerlogin">  Yönetici Giriş Yap</Link>
-                        </DropdownItem>
-                        <DropdownItem
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                        <i class="fas fa-user-cog"></i>&nbsp;<Link to="/customerlogin">  Admin Giriş Yap</Link>
-                        </DropdownItem>
+                        <Link to="/Customerlogin">
+                        <DropdownItem href="#pablo" >
+                        <i class="fas fa-user">&nbsp;&nbsp;Giriş Yap</i>
+                        </DropdownItem></Link>
+
+                        <Link to="/Customercreate"> 
+                        <DropdownItem href="#pablo" >
+                        <i class="fas fa-user-plus">&nbsp;&nbsp;Kayıt OL</i>
+                        </DropdownItem></Link>
+
+                        <Link to="/customerlogin">
+                        <DropdownItem href="#pablo">
+                        <i class="fas fa-user-md">&nbsp;&nbsp; Dr. Giriş Yap</i>
+                        </DropdownItem></Link>
+
+                       <Link to="/customerlogin">
+                       <DropdownItem  href="#pablo">
+                       <i class="fas fa-user-tie">&nbsp;&nbsp; Yönetici Giriş Yap</i>
+                        </DropdownItem></Link>
+
+                      <Link to="/customerlogin">
+                      <DropdownItem href="#pablo">
+                      <i class="fas fa-user-cog">&nbsp;&nbsp;  Admin Giriş Yap</i>
+                      </DropdownItem></Link>
                         
                       </DropdownMenu>
                     </UncontrolledDropdown>

@@ -26,9 +26,6 @@ import {
   UncontrolledPopover,
 } from "reactstrap";
 
-// import "assets/css/style.css";
-
-
 import IndexNavbar from "../Navbars/IndexNavbar.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 function randone() {

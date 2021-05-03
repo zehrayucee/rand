@@ -1,11 +1,7 @@
 import { useState, useEffect,React }  from "react";
-// reactstrap components
-// core components
-import IndexNavbar from "../Navbars/IndexNavbar.js";
-import IndexHeader from "../Headers/IndexHeader.js";
+import { Link } from "react-router-dom";
 import DemoFooter from "../Footers/DemoFooter.js";
-//import DemoFooter from "components/Footers/DemoFooter.js";
-
+import axios from 'axios';
 import {
     Button,
     UncontrolledCollapse,
@@ -98,25 +94,24 @@ function Customerdate() {
             aria-labelledby="dropdownMenuButton"
             className="dropdown-info"
           >
-            
+          <Link to="/Customerid">
             <DropdownItem
               href="#pablo"
-              onClick={(e) => e.preventDefault()}
             >
               Kimlik Bilgileri
-            </DropdownItem>
+            </DropdownItem></Link>
+            <Link to="/Customercontact">
             <DropdownItem
               href="#pablo"
-              onClick={(e) => e.preventDefault()}
             >
               İletişim Bilgileri
-            </DropdownItem>
+            </DropdownItem></Link>
+            <Link to="/Customerpassword">
             <DropdownItem
               href="#pablo"
-              onClick={(e) => e.preventDefault()}
             >
               Parolamı Yenile
-            </DropdownItem>
+            </DropdownItem></Link>
             
           </DropdownMenu>
         </UncontrolledDropdown>
@@ -140,19 +135,18 @@ function Customerdate() {
             aria-labelledby="dropdownMenuButton"
             className="dropdown-info"
           >
-            
+          <Link to="/Customerdate">
             <DropdownItem
               href="#pablo"
-              onClick={(e) => e.preventDefault()}
             >
               Randevularım
-            </DropdownItem>
+            </DropdownItem></Link>
+            <Link to="/Customerdate">
             <DropdownItem
               href="#pablo"
-              onClick={(e) => e.preventDefault()}
             >
               Randevu Geçmişi
-            </DropdownItem>
+            </DropdownItem></Link>
             
             
           </DropdownMenu>
@@ -160,57 +154,6 @@ function Customerdate() {
       </Nav>
     
     <Nav className="ml-auto" navbar>
-     {/* <NavItem className="active">
-        <NavLink
-          href="#pablo"
-          onClick={(e) => e.preventDefault()}
-        >
-          <i aria-hidden={true} className="nc-icon nc-email-85" />
-        </NavLink>
-      </NavItem>*/}
-      {/*<UncontrolledDropdown nav inNavbar>
-        <DropdownToggle
-          aria-expanded={false}
-          aria-haspopup={true}
-          caret
-          color="default"
-          data-toggle="dropdown"
-          href="#pablo"
-          nav
-          onClick={(e) => e.preventDefault()}
-          role="button"
-        >
-          <i
-            aria-hidden={true}
-            className="nc-icon nc-single-02"
-          />Bilgilerim
-        </DropdownToggle>
-        <DropdownMenu className="dropdown-danger" right>
-          <DropdownItem header tag="span">
-            Dropdown header
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Another action
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Something else here
-          </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Separated link
-          </DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
-*/}
       <NavItem>
         <NavLink
           href="#pablo"
