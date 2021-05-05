@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useState} from "react";
+
 import DemoFooter from "../Footers/DemoFooter.js";
 import ReactDatetime from "react-datetime";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import PhoneInput from 'react-phone-number-input'
 import {
     Button,
     UncontrolledCollapse,
@@ -25,8 +27,13 @@ import {
     Row,
     Container,
   } from "reactstrap";
+import { relativeTimeThreshold } from "moment";
+
  
   
+  
+ 
+   
 
   export default class Customercontact extends Component {
     constructor(props){
@@ -34,12 +41,16 @@ import {
       this.state={
           id:"",
           tc:"",
+          value:"",
           phone:"",
           adress:"",
           eposta:"",
           
       }
+      this.setState({value:""})
     }
+    
+
     componentDidMount(){
       var bu = this
       axios.get("http://localhost:12283/api/TBLNOTs/").then(res=>{
@@ -53,6 +64,15 @@ import {
         console.log(err)
       })
     }
+    onChangeHandle(key) {
+      return e => {
+          this.setState({
+              [key]: e.target.value
+          });
+      }
+     
+  }
+  
     render() {  
      return (
     <> 
@@ -287,6 +307,11 @@ import {
      </div>
      </FormGroup>
       {/*t-ı*/}
+      <PhoneInput
+      placeholder="Enter phone number"
+      value={value}
+      onChange={setValue}/>
+
       {/*text-ınput */}
       <FormGroup>
       <div className="row">
