@@ -1,10 +1,10 @@
 import React, { Component, useState} from "react";
-
 import DemoFooter from "../Footers/DemoFooter.js";
 import ReactDatetime from "react-datetime";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import PhoneInput from 'react-phone-number-input'
+import TextField from '@material-ui/core/TextField';
 import {
     Button,
     UncontrolledCollapse,
@@ -27,13 +27,16 @@ import {
     Row,
     Container,
   } from "reactstrap";
-import { relativeTimeThreshold } from "moment";
 
- 
-  
-  
- 
-   
+
+const initialState = {
+  name: "",
+  eposta: "",
+  password: "",
+  nameError: "",
+  emailError: "",
+  passwordError: ""
+};
 
   export default class Customercontact extends Component {
     constructor(props){
@@ -45,12 +48,24 @@ import { relativeTimeThreshold } from "moment";
           phone:"",
           adress:"",
           eposta:"",
-          
       }
-      this.setState({value:""})
     }
-    
+    state = { phone: "" };
 
+  handleOnChange = value => {
+    console.log(value);
+    this.setState({ phone: value }, () => {
+      console.log(this.state.phone);
+    });
+  };
+  onChangeHandle(key){
+    return e =>{
+      this.setState({
+        [key]: e.target.value
+      })
+    }} 
+
+   
     componentDidMount(){
       var bu = this
       axios.get("http://localhost:12283/api/TBLNOTs/").then(res=>{
@@ -70,8 +85,8 @@ import { relativeTimeThreshold } from "moment";
               [key]: e.target.value
           });
       }
+     }
      
-  }
   
     render() {  
      return (
@@ -274,7 +289,7 @@ import { relativeTimeThreshold } from "moment";
            <h5>ID :</h5>
          </div>
          <div className="col-md-8">
-           <Input placeholder="Default" type="text" value={this.state.id}/>
+           <Input placeholder="Default" maxLength="11" type="text" value={this.state.id} onChange={this.onChangeHandle("id")}/>
          </div>
         </div>
         </FormGroup>
@@ -286,7 +301,7 @@ import { relativeTimeThreshold } from "moment";
            <h5>TC :</h5>
          </div>
          <div className="col-md-8">
-           <Input placeholder="Default" type="text" value={this.state.tc} />
+           <Input placeholder="Default"  maxLength="11" type="number" value={this.state.tc} onChange={this.onChangeHandle("tc")}/>
          </div>
         </div>
         </FormGroup>
@@ -302,15 +317,22 @@ import { relativeTimeThreshold } from "moment";
         <h5>TELEFON :</h5>
       </div>
       <div className="col-md-8">
-        <Input placeholder="Default" type="text" value={this.state.phone}/>
+       <PhoneInput
+      className="phone "
+          inputExtraProps={{
+            name: "phone",
+            required: true,
+            autoFocus: true
+          }}
+          defaultCountry={"sg"}
+          value={this.state.phone}
+          onChange={this.handleOnChange}
+        />{/* <Input placeholder="Default" type="text" value={this.state.phone}/> */}
       </div>
      </div>
      </FormGroup>
       {/*t-ı*/}
-      <PhoneInput
-      placeholder="Enter phone number"
-      value={value}
-      onChange={setValue}/>
+      
 
       {/*text-ınput */}
       <FormGroup>
@@ -319,7 +341,7 @@ import { relativeTimeThreshold } from "moment";
          <h5>ADRES :</h5>
        </div>
        <div className="col-md-8">
-         <Input placeholder="Default" type="text" value={this.state.adress} />
+         <Input placeholder="Default" maxLength="100" type="text" value={this.state.adress} onChange={this.onChangeHandle("adress")}/>
        </div>
       </div>
       </FormGroup>
@@ -331,8 +353,10 @@ import { relativeTimeThreshold } from "moment";
           <h5>E_POSTA :</h5>
         </div>
         <div className="col-md-8">
-          <Input placeholder="Default" type="text"  value={this.state.eposta}/>
+          <Input placeholder="Default" name="email"  type="text" maxLength="50" value={this.state.eposta} onChange={this.onChangeHandle("eposta")}/>
         </div>
+        <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.emailError}</div>
        </div>
        </FormGroup>
         {/*t-ı*/}
