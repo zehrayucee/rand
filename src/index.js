@@ -22,6 +22,7 @@ import Customerpassword from "components/Pages/Customerpassword.js";
 import Customercontact from "components/Pages/Customercontact.js";
 import Customerdate from "components/Pages/customerdate.js";
 import Customerlogin from "components/Pages/Customerlogin.js";
+import Deneme from "components/Pages/Deneme.js";
 
 
 ReactDOM.render(
@@ -72,6 +73,10 @@ ReactDOM.render(
       path="/customerdate"
       render={(props) => <Customerdate {...props} />}
        />
+       <Route
+       path="/Deneme"
+       render={(props) => <Deneme {...props} />}
+        />
        
      
       <Redirect to="/index" />

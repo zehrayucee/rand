@@ -3,6 +3,9 @@ import DemoFooter from "../Footers/DemoFooter.js";
 import ReactDatetime from "react-datetime";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import Cookies from 'js-cookie'
+import { Route, Redirect } from 'react-router'
+import * as firebase from 'firebase';
 import {
     Button,
     UncontrolledCollapse,
@@ -27,8 +30,113 @@ import {
   } from "reactstrap";
  
   export default class Customerpassword extends Component {
-    
-    
+    constructor(props){
+      super(props);
+      this.state = {
+        password2:"",
+        newpassword: "",
+        newpassword2: "",
+        
+        
+      };
+      this.onChangeHandle = this.onChangeHandle.bind(this)
+      }
+      onChangeHandle(key){
+        return e =>{
+          this.setState({
+            [key]: e.target.value
+          })
+        }} 
+
+      cookiesremove = () => {
+      Cookies.remove("name");
+      <Redirect to="/index" /> 
+       }
+
+      componentDidMount(){
+        var bu = this
+        axios.get("http://localhost:3001/customer")
+        .then(res=>{
+          console.log(res);
+          console.log(res.data);
+          bu.setState({
+            respass :res.data[0].customer_password, //gelen data
+          })
+        }).catch(err=>{
+          console.log(err)
+        })
+      }
+      
+      change = (e) => {
+        let input = this.state.input;
+        e.preventDefault();
+        const user ={
+          
+          newpassword: this.state.newpassword,
+          newpassword2: this.state.newpassword2,
+        }
+        var inputs = [].slice.call(document.getElementsByTagName("input"));
+        [].slice.call(document.getElementsByClassName("error")).forEach(res=>{
+          res.remove()
+        })
+        
+
+        inputs.map((data)=>{
+          if (data.value === "") {
+            var element = data.parentElement;
+
+            var e2 = element.appendChild(document.createElement("div", {innerText: "test"  }))
+        e2.innerText = "Lütfen boş bırakmayınız!";
+        e2.classList.add("error")
+        var div = element.children;  }
+           })
+           if(this.state.password2 === this.state.respass){
+            alert("eski parola doğru")
+              if (typeof this.state.newpassword !== "undefined" && typeof this.state.newpassword2 !== "undefined") {
+                  if (this.state.newpassword != this.state.newpassword2) {
+                  alert("parolayı doğru yazdığınızı kontrol edin")
+                  Array.from(document.querySelectorAll("input")).forEach(
+                  input => (input.value = "")
+                  );
+                  this.setState({
+                  newpassword:"",
+                  newpassword2:"",
+                  });
+                }
+                else{
+                alert("parola tekrarı doğru")
+                if(this.state.password2 !== ""){
+                 if(this.state.newpassword !== ""){
+                  if(this.state.newpassword2 !== ""){
+                    alert("giriş-1")
+                    var $this = this;
+                    axios.post("http://localhost:3001/customer"  )
+                    .then(res => {
+                      console.log(res);
+                      console.log(res.data);
+                      this.setState({
+                      respass :res.data[0].customer_password
+                      })
+                    }).catch(err=>{
+                      console.log(err)
+
+                    })
+                  }
+                  alert(this.state.respass)
+              }
+            }
+ }   }
+   
+  }
+  else{
+    alert("eski parola yalnış")
+    return false;
+  }
+//alert(this.state.resspass)
+  //alert(this.state.password2) //çalışıyoor
+ 
+    }
+ 
     render() {  
      return (
     <> 
@@ -206,12 +314,15 @@ import {
       <NavItem>
         <NavLink
           href="#pablo"
-          onClick={(e) => e.preventDefault()}
+          onClick={this.cookiesremove}
         >
+        
+        <Link to="/index">
           <i
             aria-hidden={true}
             className="nc-icon nc-settings-gear-65"
-          />Çıkış
+          
+          />Çıkış</Link>
         </NavLink>
       </NavItem>
       </Nav>
@@ -234,7 +345,7 @@ import {
       <h5>Eski Şifre :</h5>
     </div>
     <div className="col-md-8 ">
-      <Input placeholder="Default" type="text" />
+      <Input placeholder="Default" type="text" value={this.state.password2} onChange={this.onChangeHandle("password2")}/>
     </div>
    </div>
    </FormGroup>
@@ -246,7 +357,7 @@ import {
       <h5>Yeni Şifre :</h5>
     </div>
     <div className="col-md-8">
-      <Input placeholder="Default" type="text" />
+      <Input placeholder="Default" type="text" value={this.state.newpassword} onChange={this.onChangeHandle("newpassword")} />
     </div>
    </div>
    </FormGroup>
@@ -258,13 +369,13 @@ import {
       <h5>Yeni Şifre(Tekrar) :</h5>
     </div>
     <div className="col-md-8">
-      <Input placeholder="Default" type="text" />
+      <Input placeholder="Default" type="text" value={this.state.newpassword2} onChange={this.onChangeHandle("newpassword2")} />
     </div>
    </div>
    </FormGroup>
     {/*t-ı*/}
     
-    <Button className="cre mra clts maaf"   outline size="lg" type="button">
+    <Button className="cre mra clts maaf" onClick={this.change}  outline size="lg" type="button">
         Güncelle
     </Button>
     </div>
@@ -282,4 +393,4 @@ import {
 </>
   );
 }
-}
+ }

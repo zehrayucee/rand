@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import IndexNavbar from "../Navbars/IndexNavbar.js";
+import Cookies from 'js-cookie'
 import {
   Button,
   Label,
@@ -42,15 +43,19 @@ class  Customercreate extends Component {
   }
 
   postt(user){
-    axios.post("http://localhost:12283/api/TBLNOTs", {user})
+    var bu = this
+    axios.post("http://localhost:3001/customer", {user})
       .then(res => {
         console.log(res);
         console.log(res.data);
-      }).catch(err=>{
-        console.log(err);
-      })
-      this.setState({page:2})
-      alert("aaa")
+        bu.setState({
+            resPass :res.data[0].not_txt
+    })
+    }).catch(err=>{
+     console.log(err);
+    })
+    this.setState({page:2})
+     alert("aaa")
   }
 
  backTo(){
