@@ -1,113 +1,105 @@
-import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-//import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import Box from '@material-ui/core/Box';
-import MobileDateRangePicker from '@material-ui/lab/MobileDateRangePicker';
-import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
+import React  from 'react'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+import SimpleDateTime  from 'react-simple-timestamp-to-date'
+import axios from 'axios';
 
-export default function ResponsiveDateRangePicker() {
-  const [value, setValue] = React.useState([null, null]);
+import {
+  
+  Input,
+} from "reactstrap";
 
-  return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <MobileDateRangePicker
-        startText="Mobile start"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField {...startProps} variant="standard" />
-            <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} variant="standard" />
-          </React.Fragment>
-        )}
-      />
-      <DesktopDateRangePicker
-        startText="Desktop start"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField {...startProps} variant="standard" />
-            <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} variant="standard" />
-          </React.Fragment>
-        )}
-      />
-    </LocalizationProvider>
-  );
+class deneme extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      data:[],
+      selectedDate : new Date(),
+      zaman:"",
+      dizi:[],
+      times:false
+    }
+   }
+   onClickhandle = (e) => { 
+     var id=e.target.dataset.id;//button data-id deger ataması
+     var array=this.state.data[id];
+     this.setState({times:array})
+
+   }
+   
+
+  componentDidMount(){
+    var nesne = this
+    axios.get("http://localhost:3003/timearray", {
+     // method: "cors"
+    }).then(res=>{
+      console.log(res.data[0])
+       nesne.setState({
+         //zaman:res.data.date,
+         //dizi:res.data.timearray
+         data:res.data
+        })
+      console.log(res.data)
+      console.log(this)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+
+setSelectedDate = (date) => {
+  this.setState({
+    selectedDate: date
+  })
+  //console.log(this.state.zaman);
+  console.log(new Intl.DateTimeFormat('en-US').format(this.state.selectedDate))
+  if(this.state.zaman != this.state.selected){
+   console.log("false");
+  }
+  else{
+    console.log("true")
+  }
+  
 }
+render() {
+  console.log(this.state.times)
+  return(
+<div >
+<DatePicker placeholderText="select"
+selected={this.state.selectedDate}
+//onChange={this.handleChange}
+onChange={this.setSelectedDate}
+dateFormat= 'dd/MM/yyyy'  
+minDate={new Date()}
+maxDate={new Date().setDate(new Date().getDate() + 5)}
+isClearable
+/>
 
-// import React, { Component } from 'react'
-// //import DatetimeRangePicker from 'react-datetime-range-picker';
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'react-dates/initialize';
+{/*<Input placeholder="Default" type="text" value={this.state.dizi}/>*/}
+<div>
 
-// //import 'bootstrap-daterangepicker/daterangepicker.css';
-// //import DatetimeRangePicker from 'react-bootstrap-datetimerangepicker';
-// import 'bootstrap/dist/css/bootstrap.css';
-// //import 'onefe-bootstrap-daterangepicker/daterangepicker.css';
-// import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates'
-// /*import {
-//     Button,
-//     label,
-//     Card,
-//     Pagination,
-//     FormGroup,
-//     Input,
-//     PaginationItem,
-//     PaginationLink,
-//     Form,
-//     Modal,
-//     Container,
-//     Row,
-//     Col,
-//   } from "reactstrap";*/
-// class  Deneme extends Component {
-//     constructor(props){
-//         super(props);
-//         this.state ={
-//             startdate:null,
-//             enddate:null,
-//         }
-//     }
-//     alertstartdate = () => {
-//         alert(this.state.startdate)
-        
-//     }
-//     alertenddate = () => {
-//         alert(this.state.enddate)
-        
-//     }
-    
-    
-//     render() {
-//         return (
-//           <>
-//           <div className="app">
-//           <DateRangePicker
-//           startdate={this.state.startdate}
-//           startdateıd="sdsd"
-//           enddate={this.state.enddate}
-//           enddateıd="hjjh"
-//           onDatesChange={({startdate, enddate}) =>this.setState({startdate, enddate})   }
-//           focusedInput={this.state.focusedInput}
-//           onfocuschange={focusedInput=> this.setState({focusedInput})}
-//           />
-//           <br/>
-//           <br/>
-//           <button onClick={this.alertstartdate} >click-1</button>
-//           <button onClick={this.alertenddate} >click-2</button>
-//           </div>
-//            </> 
-//         );
-//       }
-    
+<div className="asd">
+{ this.state.data.map((item,index) =>
+  <ul>
+  <button data-id={index} onClick={this.onClickhandle}>{item.date}</button>
+  </ul> 
+   )}
 
-// }
-// export default Deneme;
+</div>
+
+{this.state.times != false ? this.state.times.timearray.map(item=>{
+  return(
+    <>
+    <button>
+      {item}<br/>
+      </button>
+    </>
+  )
+}) : ''}
+</div>
+</div>
+
+  )
+  }
+}
+export default deneme;
+
