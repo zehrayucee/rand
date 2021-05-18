@@ -1,8 +1,9 @@
-import React from "react";
-// import Dropdown from "react-dropdown";
-//import { Button, Card, Pagination,Dropdown, PaginationItem, PaginationLink, Form, Input, Container, Row, Col } from "reactstrap";
+import React, { Component } from 'react'
 import { displayPartsToString } from "typescript";
 import ReactDatetime from "react-datetime";
+import axios from 'axios';
+import IndexNavbar from "../Navbars/IndexNavbar.js";
+import DemoFooter from "components/Footers/DemoFooter.js";
 import {
   Button,
   Label,
@@ -26,9 +27,60 @@ import {
   UncontrolledPopover,
 } from "reactstrap";
 
-import IndexNavbar from "../Navbars/IndexNavbar.js";
-import DemoFooter from "components/Footers/DemoFooter.js";
-function randone() {
+
+
+export class randone extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      data:[],
+      selectedDate : new Date(),
+      zaman:"",
+      dizi:[],
+      times:false
+      
+    }
+   }
+
+   onClickhandlee= (e) => { 
+    var id=e.target.dataset.id;//button data-id deger ataması
+    var array=this.state.data[id];
+    this.setState({times:array})
+   
+  }
+  componentDidMount(){
+    var nesne = this
+    axios.get("http://localhost:3003/timearray", {
+     // method: "cors"
+    }).then(res=>{
+      console.log(res.data[0])
+       nesne.setState({
+         //zaman:res.data.date,
+         //dizi:res.data.timearray
+         data:res.data
+        })
+      console.log(res.data)
+      console.log(this)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+
+setSelectedDate = (date) => {
+  this.setState({
+    selectedDate: date
+  })
+  //console.log(this.state.zaman);
+  console.log(new Intl.DateTimeFormat('en-US').format(this.state.selectedDate))
+  if(this.state.zaman != this.state.selected){
+   console.log("false");
+  }
+  else{
+    console.log("true")
+  }
+  
+}
+  render() {
     return (
 <>
 <IndexNavbar />
@@ -234,7 +286,7 @@ function randone() {
        height:"90%", }} >
 
         <div className="form1 mlk">
-           <Form className="register-form">
+           <Form action="javascipt:;" className="register-form">
              <Container>
              <Row>
 
@@ -243,23 +295,23 @@ function randone() {
                  <div className="title text-dark text-border bld " >
                  <h5><span className="note bld">Seçim 5</span></h5>
                  </div>
-
-                
-                  <FormGroup>
-                    <InputGroup className="date" id="datetimepicker">
-                        <ReactDatetime
-                        inputProps={{
-                        placeholder: "Datetime", }}
-                        />
-                      <InputGroupAddon addonType="append ">
-                        <InputGroupText className="dtclr">
-                          <span className="glyphicon glyphicon-calendar  ">
-                            <i aria-hidden={true} className="fa fa-calendar" />
-                          </span>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                    </InputGroup>
-                  </FormGroup>
+                 <div className="asdrr">
+                 
+                 { this.state.data.map((item,index) =>
+                  <div className="col-md-3" >
+                   <Button
+                   color="success"
+                   size="lg"
+                   type="button"
+                   className="ml-1 asdf"
+                   data-id={index} onClick={this.onClickhandlee}
+                 >
+                   {item.date}
+                 </Button></div>
+                  
+                    )}
+                 </div>
+                 
                 </Col>
 
              </div>
@@ -277,17 +329,16 @@ function randone() {
                </div>
 
                <div className="asd">
-                <ul>
-                  <Button className="tkh" color="#6bd098" type="button">
-                  Default
-                  </Button>
-                  <Button className="tkh" color="#6bd098" type="button">
-                  Default
-                  </Button>
-                  <Button className="tkh" color="#6bd098" type="button">
-                  Default
-                  </Button>
-                </ul>
+               {this.state.times != false ? this.state.times.timearray.map(item=>{
+                return(
+                  <>
+                  <Button className="btn-1 ml-1" color="success" type="button">
+                  {item}
+                </Button>
+                  
+                  </>
+                )
+              }) : ''}
                </div>
              </div>
              </Row>
@@ -719,8 +770,8 @@ function randone() {
 </Container> 
 
 </>
-        
-      );
-    }
+);
+}
+}
 
 export default randone;

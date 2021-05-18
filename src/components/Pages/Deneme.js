@@ -6,8 +6,10 @@ import axios from 'axios';
 
 import {
   
+  Container,
   Input,
 } from "reactstrap";
+import { green } from '@material-ui/core/colors';
 
 class deneme extends React.Component {
   constructor(props){
@@ -18,13 +20,14 @@ class deneme extends React.Component {
       zaman:"",
       dizi:[],
       times:false
+      
     }
    }
    onClickhandle = (e) => { 
      var id=e.target.dataset.id;//button data-id deger ataması
      var array=this.state.data[id];
      this.setState({times:array})
-
+    
    }
    
 
@@ -61,6 +64,7 @@ setSelectedDate = (date) => {
   
 }
 render() {
+  //let asdf = this.state.black ? "blackButton" : "whiteButton";
   console.log(this.state.times)
   return(
 <div >
@@ -77,14 +81,17 @@ isClearable
 {/*<Input placeholder="Default" type="text" value={this.state.dizi}/>*/}
 <div>
 
-<div className="asd">
+<div className="asd col-md-12">
+<container>
 { this.state.data.map((item,index) =>
-  <ul>
-  <button data-id={index} onClick={this.onClickhandle}>{item.date}</button>
-  </ul> 
+  
+  <row>
+  <button className="asdf "   data-id={index} onClick={this.onClickhandle}>{item.date}</button>
+  </row>
+  
    )}
+</container></div>
 
-</div>
 
 {this.state.times != false ? this.state.times.timearray.map(item=>{
   return(
