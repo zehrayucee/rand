@@ -100,8 +100,8 @@
     overflow-y: scroll;
     height: 200px;
     width: 400px;
-    
-    
+
+
 }
 
 
@@ -149,7 +149,7 @@
 }
 
 .as1 {
-    
+
     background-color: #6bd098;
     width: "100%";
     height: "15%";
@@ -291,7 +291,7 @@
 }
 
 .iki {
-    
+
     min-width: 80%;
 }
 
@@ -334,11 +334,13 @@
     .bst {
         margin-left: 0px;
     }
-    .mw-100{
-     max-width: 90%;
+
+    .mw-100 {
+        max-width: 90%;
     }
-    .nbv{
-     margin-left: 0px;
+
+    .nbv {
+        margin-left: 0px;
     }
 }
 
@@ -346,29 +348,33 @@
     min-width: 100%;
 }
 
-.a{
-    color: black!important;
+.a {
+    color: black !important;
 }
 
-.children{
+.children {
     background-color: red;
 }
-.phone{
+
+.phone {
     width: 20%;
     height: 20%;
 }
-.a2{
+
+.a2 {
     background-color: #6bd098;
 }
-.zt{
+
+.zt {
     width: 10%;
     height: 10%;
     background-color: yellow;
 }
-.asdf{
+
+.asdf {
     background-color: rgb(83, 167, 115);
 }
 
-  .asdf:hover {
+.asdf:hover {
     opacity: 0.3;
 }

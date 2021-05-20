@@ -35,18 +35,18 @@ ReactDOM.render(
       />
       <Route
         path="/Customerlogin"
-        render={(props) => <Customerlogin {...props}  />}
+        render={(props) => <Customerlogin {...props} />}
       />
       <Route
-      path="/layoutpage"
-      render={(props) => <Layoutpage {...props}  />}
-       />
+        path="/layoutpage"
+        render={(props) => <Layoutpage {...props} />}
+      />
       <Route
         path="/randone"
         render={(props) => <Randone {...props} />}
       />
       <Route path='companystaff/:company_id' component={Randone} />
-      
+
       <Route
         path="/Customercreate"
         render={(props) => <Customercreate {...props} />}
@@ -56,31 +56,31 @@ ReactDOM.render(
         render={(props) => <Passwordnew {...props} />}
       />
       <Route
-      path="/Customerhomepage"
-      render={(props) => <Customerhomepage {...props} />}
-       />
-       <Route
-      path="/Customerid"
-      render={(props) => <Customerid {...props} />}
-       />
-       <Route
-      path="/Customerpassword"
-      render={(props) => <Customerpassword {...props} />}
-       />
-       <Route
-      path="/Customercontact"
-      render={(props) => <Customercontact {...props} />}
-       />
-       <Route
-      path="/customerdate"
-      render={(props) => <Customerdate {...props} />}
-       />
-       <Route
-       path="/Deneme"
-       render={(props) => <Deneme {...props} />}
-        />
-       
-     
+        path="/Customerhomepage"
+        render={(props) => <Customerhomepage {...props} />}
+      />
+      <Route
+        path="/Customerid"
+        render={(props) => <Customerid {...props} />}
+      />
+      <Route
+        path="/Customerpassword"
+        render={(props) => <Customerpassword {...props} />}
+      />
+      <Route
+        path="/Customercontact"
+        render={(props) => <Customercontact {...props} />}
+      />
+      <Route
+        path="/customerdate"
+        render={(props) => <Customerdate {...props} />}
+      />
+      <Route
+        path="/Deneme"
+        render={(props) => <Deneme {...props} />}
+      />
+
+
       <Redirect to="/index" />
     </Switch>
   </BrowserRouter>,
