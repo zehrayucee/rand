@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch, Router } from "react-router-dom";
 
 // styles
 import "bootstrap/scss/bootstrap.scss";
@@ -45,6 +45,8 @@ ReactDOM.render(
         path="/randone"
         render={(props) => <Randone {...props} />}
       />
+      <Route path='companystaff/:company_id' component={Randone} />
+      
       <Route
         path="/Customercreate"
         render={(props) => <Customercreate {...props} />}
