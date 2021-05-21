@@ -378,3 +378,12 @@
 .asdf:hover {
     opacity: 0.3;
 }
+.tt{
+    min-width: 100%;
+    min-height: 100%;
+    padding: 60px;
+    background-color: rgb(235, 235, 235);
+}
+.padd{
+    padding: 40px;
+}

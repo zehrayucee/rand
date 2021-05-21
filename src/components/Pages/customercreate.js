@@ -71,6 +71,7 @@ class Customercreate extends Component {
 
   handleSubmit(e) {
     let input = this.state.input;
+    
 
     e.preventDefault();
     const user = {
@@ -167,47 +168,26 @@ class Customercreate extends Component {
                           <h4><span className="note bld">Kayıt Olun</span></h4>
                         </div>
                       </div>
-                      <div className="paniation mll col-md-2 "
-                        style={{
-                          backgroundColor: "yellow", //#6bd098
-                          display: "flex",
-                          width: "20%",
-                          height: "80%",
-                        }}>
-                        {/*panigation (1-2)*/}
-
+                      <div className="paniation mll yrrf">
                         <nav aria-label="...">
                           <Pagination count={10} disabled>
-                            <PaginationItem  >
-                              <PaginationLink
-                                href="#pablo"
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                1
-                  </PaginationLink>
-                            </PaginationItem>
-
                             <PaginationItem className="active">
                               <PaginationLink
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
                               >
-                                2
-                  </PaginationLink>
+                                1
+                </PaginationLink>
                             </PaginationItem>
                           </Pagination>
                         </nav>
-                        {/*panfinish */}
                       </div>
                     </div>
 
                     <div className="as2 ">
                       <div className="form1 mlk">
-
                         <Container>
                           <form >
                             <div className="row">
-
                               <div className="col-md-12 col-lg-6 col-sm-12">
 
                                 {/*text-ınput */}
@@ -215,7 +195,7 @@ class Customercreate extends Component {
                                   <div className="row">
                                     <div className="col-md-4 bld">
                                       Tc Kimlik NO
-                     </div>
+                                    </div>
                                     <div className="col-md-8">
                                       <Input placeholder="Default" type="text" value={this.state.idtt} onChange={this.onChangeHandle("idtt")} />
                                       <div className="text-danger">{this.state.pass}</div>
@@ -223,60 +203,63 @@ class Customercreate extends Component {
                                   </div>
                                 </FormGroup>
                                 {/*t-ı*/}
+
                                 {/*text-ınput */}
                                 <FormGroup>
                                   <div className="row">
                                     <div className="col-md-4 bld">
                                       Ad
-                     </div>
+                                    </div>
                                     <div className="col-md-8">
                                       <Input placeholder="Default" type="text" value={this.state.name} onChange={this.onChangeHandle("name")} />
                                     </div>
                                   </div>
                                 </FormGroup>
                                 {/*t-ı*/}
+
                                 {/*text-ınput */}
                                 <FormGroup>
                                   <div className="row">
                                     <div className="col-md-4 bld">
                                       Soyad
-                     </div>
+                                    </div>
                                     <div className="col-md-8">
                                       <Input placeholder="Default" type="text" value={this.state.lastname} onChange={this.onChangeHandle("lastname")} />
                                     </div>
                                   </div>
                                 </FormGroup>
                                 {/*t-ı*/}
+
                                 {/*text-ınput */}
                                 <FormGroup>
                                   <div className="row">
                                     <div className="col-md-4 bld ">
                                       Baba Adı
-                     </div>
+                                    </div>
                                     <div className="col-md-8">
                                       <Input placeholder="Default" type="text" value={this.state.fathername} onChange={this.onChangeHandle("fathername")} />
                                     </div>
                                   </div>
                                 </FormGroup>
                                 {/*t-ı*/}
+
                                 {/*text-ınput */}
                                 <FormGroup>
                                   <div className="row">
                                     <div className="col-md-4 bld">
                                       Doğum Tarihi
-                     </div>
+                                    </div>
                                     <div className="col-md-8">
                                       <Input placeholder="Default" type="text" value={this.state.datebird} onChange={this.onChangeHandle("datebird")} />
                                     </div>
                                   </div>
                                 </FormGroup>
-
                                 {/*t-ı*/}
-
                               </div>
 
                               <div className="col-md-12 col-lg-6 col-sm-12">
                                 {/*text-ınput */}
+                                <FormGroup className="mt-3">
                                 <div className="form-group col-md-12 ">
                                   <div className="row">
                                     <div className="col-md-4 bld pl-0 ">
@@ -287,7 +270,9 @@ class Customercreate extends Component {
                                     </div>
                                   </div>
                                 </div>
+                                </FormGroup>
                                 {/*t-ı*/}
+
                                 {/*text-ınput */}
                                 <div className="form-group col-md-12 ">
                                   <div className="row">

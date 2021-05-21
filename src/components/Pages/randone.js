@@ -26,6 +26,7 @@ import {
   PopoverBody,
   PopoverHeader,
   UncontrolledPopover,
+  Table,
 } from "reactstrap";
 
 
@@ -39,12 +40,23 @@ export class randone extends Component {
       data3: [],
       data4: [],
       id: "",
+      sel1: "",
+      sel2: "",
+      sel3: "",
+      page: 1,
       //data2:false,
       selectedDate: new Date(),
       zaman: "",
       dizi: [],
-      times: false
-
+      page2: 3,
+      times: false,
+      compname: "",
+      compstaff: "",
+      compuser: "",
+      compdate: "",
+      comptimerr: "",
+      disabled: 1,
+      disabled:3
     }
   }
 
@@ -64,11 +76,16 @@ export class randone extends Component {
   }
 
   mett = (e) => {
-    var akt = this
+    var akt = this;
+    console.log(e.target)
+    var deger = [].slice.call(e.target.children).filter(function (item) { return item.value == e.target.value });
+    console.log(deger[0].innerText)
     axios.get("http://localhost:3004/companystaff/" + e.target.value).then(res => {
       //console.log(res.data)
       akt.setState({
-        data2: res.data
+        data2: res.data,
+        compname: deger[0].innerText,
+
       })
       // console.log(akt.state.data)
     }).catch(err => {
@@ -77,27 +94,35 @@ export class randone extends Component {
   }
 
   ret = (e) => {
-    //console.log("ret")
     var ntt = this
+    console.log(e.target)
+    var deger1 = [].slice.call(e.target.children).filter(function (item) { return item.value == e.target.value });
+    console.log(deger1[0].innerText)
     axios.get("http://localhost:3005/companyuser/" + e.target.value).then(res => {
       // console.log(res.data)
       ntt.setState({
-        data3: res.data
+        data3: res.data,
+        page: 4,
+        compstaff: deger1[0].innerText,
       })
       // console.log(ntt.state.data)
     }).catch(err => {
       console.log(err)
     })
-
   }
 
   fonk = (e) => {
+    this.setState({ page: 4 })
+    var deger2 = [].slice.call(e.target.children).filter(function (item) { return item.value == e.target.value });
+    console.log(deger2[0].innerText)
     console.log("fonk")
     var fonkt = this
     axios.get("http://localhost:3006/companyrundate/" + e.target.value).then(res => {
       console.log(res.data)
       fonkt.setState({
-        data4: res.data
+        data4: res.data,
+        disabled: 2,
+        compuser: deger2[0].innerText,
       })
       // console.log(ntt.state.data)
     }).catch(err => {
@@ -105,14 +130,29 @@ export class randone extends Component {
     })
 
   }
-
   onClickhandlee = (e) => {
     var id = e.target.dataset.id;//button data-id deger ataması
     var array = this.state.data4[id];
-    this.setState({ times: array })
-
+    var deger4 = e.target.innerText;
+    console.log(deger4)
+    this.setState({ times: array, page: 5, compdate: deger4 })
   }
 
+
+  show = (e) => {
+    var deger5 = e.target.innerText;
+    console.log(deger5)
+    this.setState({ comptimerr: deger5 })
+  }
+
+handlesubmit = () => {
+  this.setState({ page: 2 })
+  
+}
+handlesubmit2 = () => {
+  this.setState({ page1: 4 })
+  
+}
 
   /*
    //  onClickhandlee= (e) => { 
@@ -154,7 +194,7 @@ export class randone extends Component {
 
   render() {
     // console.log(this.state.data2 == false ? "bş" : typeof(this.state.data2[0].company_name))
-    console.log(this.state.times)
+    console.log(this.state)
     return (
       <>
 
@@ -202,9 +242,9 @@ export class randone extends Component {
                         <Form className="register-form">
                           <Container>
                             <Row>
-                              <div className="col-md-12 col-lg-5 col-sm-12">
+                              <div className="col-md-12 col-lg-6 col-sm-12">
                                 <div className="title text-dark text-border " >
-                                  <h5><span className="note bld ">İL </span></h5>
+                                  <h5><span className="note bld ">İl </span></h5>
                                   <div className="select" >
                                     <select class="custom-select" onInput={this.mett} aria-label=".form-select-lg example">
                                       <option value="0" disabled="true" selected="true">il seçiniz</option>
@@ -218,9 +258,9 @@ export class randone extends Component {
                                     </select></div></div>
                               </div>
 
-                              <div className="col-md-12 col-lg-5 col-sm-12">
+                              <div className="col-md-12 col-lg-6 col-sm-12">
                                 <div className="title text-dark text-border bld " >
-                                  <h5><span className="note bld">İLÇE</span></h5>
+                                  <h5><span className="note bld">İlçe</span></h5>
                                   <select class="custom-select form-select-lg col-md-12" onInput={this.ret} aria-label=".form-select-lg example">
                                     <option value="0" disabled="true" selected="true">ilçe seçiniz</option>
                                     {this.state.data2.map(index => {
@@ -239,9 +279,9 @@ export class randone extends Component {
                               </div>
                             </Row>
                             <Row>
-                              <div className="col-md-12 col-lg-5 col-sm-12">
+                              <div className="col-md-12 col-lg-6 col-sm-12">
                                 <div className="title text-dark text-border bld " >
-                                  <h5><span className="note bld">DOKTOR </span></h5>
+                                  <h5><span className="note bld">Doktor </span></h5>
                                   <select class="custom-select form-select-lg col-md-12 " onInput={this.fonk} aria-label=".form-select-lg example">
                                     <option value="0" disabled="true" selected="true">doktor seçiniz</option>
                                     {this.state.data3.map(inx => {
@@ -261,7 +301,7 @@ export class randone extends Component {
                                   </div>*/}
                             </Row>
                             <Row>
-                              <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button">
+                              <Button disabled={this.state.disabled == 1 ? true : false} className="btn-round mr-1 mla btn-lg" onClick={this.handlesubmit} color="danger" type="button">
                                 Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                               </Button>
                             </Row>
@@ -279,7 +319,8 @@ export class randone extends Component {
         /*22222**************************************************************************** */
         <Container>
           <Row >
-            <div className="iki rml-auto mr-auto mw-100">
+          
+            <div className={this.state.page == 2 ? 'iki rml-auto mr-auto mw-100' : 'd-none'}>
               <Col className=" rml-auto mr-auto mw-100 " >
                 <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
 
@@ -337,28 +378,28 @@ export class randone extends Component {
                           <Row>
 
                             <div className="col-md-12 col-lg-6 col-sm-12">
-                              
-                                <div className="title text-dark text-border bld " >
-                                  <h5><span className="note bld">Randevu Tarihi</span></h5>
-                                </div>
 
-                                <div className="asd">
-                                  {this.state.data4.map((item, index) =>
-                                    <div className="col-md-3" >
-                                      {console.log(item.date)}
-                                      <Button
-                                        color="success"
-                                        size="lg"
-                                        type="button"
-                                        className="ml-1 asdf"
-                                        data-id={index}
-                                        onClick={this.onClickhandlee}
-                                      >
-                                        {item.date}
-                                      </Button></div>
-                                  )}
-                                </div>
-                              
+                              <div className="title text-dark text-border bld " >
+                                <h5><span className="note bld">Randevu Tarihi</span></h5>
+                              </div>
+
+                              <div className="asd">
+                                {this.state.data4.map((item, index) =>
+                                  <div className="col-md-3" >
+                                    {console.log(item.date)}
+                                    <Button
+                                      color="success"
+                                      size="lg"
+                                      type="button"
+                                      className="ml-1 asdf"
+                                      data-id={index}
+                                      onClick={this.onClickhandlee}
+                                    >
+                                      {item.date}
+                                    </Button></div>
+                                )}
+                              </div>
+
                             </div>
 
                             <div className="col-md-12 col-lg-5 col-sm-12">
@@ -368,26 +409,33 @@ export class randone extends Component {
                               </div>
 
                               <div className="asd">
-                              <div clasname="tt"></div>
-                                {this.state.times != false ? this.state.times.timearray.map(item => {
 
-                                  return (
-                                    <>
-                                      <Button className="btn-1 ml-1" color="success" type="button">
-                                        {item}
-                                      </Button>
+                                <div className={this.state.page != 5 ? 'tt' : 'd-none'}>
+                                  <h4>Lütfen Tarih Seçiniz...</h4>
+                                </div>
 
-                                    </>
-                                  )
-                                }) : ''}
-                              </div>
+                                <div className="bv" >
+
+                                  {this.state.times != false ? this.state.times.timearray.map(item => {
+
+                                    return (
+                                      
+                                        <Button onClick={this.show} className="btn-1 ml-1" color="success" type="button">
+                                          {item}
+                                        </Button>
+
+                                      
+                                    )
+                                  }) : ''}</div>
+                              
+                            </div>
                             </div>
                           </Row>
                           <div className="ta" >
                             <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button">
-                              <i class="fas fa-chevron-left">&nbsp;&nbsp;</i>Önceki
+                              <i class="fas fa-chevron-left">&nbsp;&nbsp;Önceki</i>
              </Button>
-                            <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button">
+                            <Button className="btn-round mr-1 mla btn-lg" disabled={this.state.disabled == 2 ? true : false} color="danger" type="button">
                               Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                             </Button>
                           </div>
@@ -405,210 +453,8 @@ export class randone extends Component {
         /*33333**************************************************************************** */
         <Container>
           <Row >
-            <div className="iki rml-auto mr-auto mw-100">
-              <Col className=" rml-auto mr-auto mw-100 " >
-                <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
-
-                  <div className="as1" /*ustdıv */
-                    style={{
-                      backgroundColor: "#6bd098", //#6bd098
-                      width: "100%",
-                      height: "15%",
-                      display: "flex",
-                    }} >
-
-                    <div className="asic mrr col-md-6"
-                      style={{
-                        backgroundColor: "#6bd098",
-                        width: "55%",
-                        height: "80%",
-                      }}>
-                      <div className="title text-dark text-border  " >
-                        <h4><span className="note bld">Bilgilerinizi Kontrol Edin</span></h4>
-                      </div>
-                    </div>
-                    <div className="paniation mll "
-                      style={{
-                        backgroundColor: "#6bd098", //#6bd098
-                        display: "flex",
-                        width: "20%",
-                        height: "80%",
-                      }}>
-
-                      <div className="paniation mll yrrf">
-                      <nav aria-label="...">
-                        <Pagination count={10} disabled>
-                          <PaginationItem className="active">
-                            <PaginationLink
-                              href="#pablo"
-                            >
-                              3
-                  </PaginationLink>
-                          </PaginationItem>
-                        </Pagination>
-                      </nav>
-                    </div>
-                    </div>
-                  </div>
-
-                  <div className="as2 ">
-                    <div className="form1 mlk">
-                      <Form className="register">
-                        <Container>
-                          <div className="row">
-
-                            <div className="col-md-12 col-lg-6 col-sm-12">
-                              <div className="bsl">
-                                {/* Boşluk*/}
-                              </div>
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                            </div>
-
-                            <div className="col-md-12 col-lg-6 col-sm-12">
-                              <div className="bsl"></div>
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/} {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              {/*text-ınput */}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4">
-                                    <h5>Ad :</h5>
-                                  </div>
-                                  <div className="col-md-8">
-                                    <Input placeholder="Default" type="text" />
-                                  </div>
-                                </div>
-                              </FormGroup>
-                              {/*t-ı*/}
-                              <div className="bst">
-                                <Button
-                                  className="btn-round mr-1 btn-lg  kt"
-                                  color="default"
-                                  outline
-                                  type="button"
-                                >
-                                  Güncelle
-               </Button>
-                                <div className="bsp"></div>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div className="ta" >
-                            <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button">
-                              <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Önceki
-             </Button>
-                            <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button">
-                              Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
-                            </Button>
-                          </div>
-                        </Container>
-                      </Form>
-                    </div>
-                  </div>
-
-                </Card>
-              </Col>
-            </div>
-          </Row>
-        </Container>
-        /*444444444************************************************************************ */
-        <Container>
-          <Row >
-            <div className="iki rml-auto mr-auto mw-100">
+          
+            <div className={this.state.page1 == 4 ? 'iki rml-auto mr-auto mw-100': 'd-none'}>
               <Col className=" rml-auto mr-auto mw-100 " >
                 <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }}>
 
@@ -645,8 +491,8 @@ export class randone extends Component {
                               <PaginationLink
                                 href="#pablo"
                               >
-                                4
-                    </PaginationLink>
+                                3
+                  </PaginationLink>
                             </PaginationItem>
                           </Pagination>
                         </nav>
@@ -658,96 +504,46 @@ export class randone extends Component {
                     <div className="form1 mlk">
                       <Form className="register">
                         <Container>
-                          <div className="row yhık">
 
-                            <div className="col-md-12 col-lg-6 col-sm-12">
-                              <div className="bsl">
-                                {/* Boşluk*/}
-                              </div>
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row ">
-                                  <div className="col-md-6 bldk ">
-                                    Denemeyazı-1
-                 </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-6  bldk">
-                                    ad
-                 </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bldk">
-                                    Ad :
-                 </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bldk">
-                                    Ad :
-                 </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
+                          <div className="row">
 
-                            </div>
+                            <div className="col-md-12 col-lg-12 col-sm-12">
+                              <Table>
+                                <thead>
+                                  <tr>
+                                    <th>il</th>
+                                    <th>{this.state.compname}</th>
 
-                            <div className="col-md-12 col-lg-6 col-sm-12">
-                              <div className="bsl">
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">ilçe</th>
+                                    <td>{this.state.compstaff}</td>
 
-                              </div>
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bldk">
-                                    Ad :
-                </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bldk">
-                                    Ad :
-                 </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bldk">
-                                    Ad :
-                 </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
-                              {/*text*/}
-                              <FormGroup>
-                                <div className="row">
-                                  <div className="col-md-4 bldk">
-                                    Ad :
-                 </div>
-                                </div>
-                              </FormGroup>
-                              {/*t*/}
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Doktor</th>
+                                    <td>{this.state.compuser}</td>
+
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Randevu Tarihi</th>
+                                    <td>{this.state.compdate}</td>
+
+                                  </tr><tr>
+                                  <th scope="row">Randevu Zamanı</th>
+                                  <td>{this.state.comptimerr}</td>
+
+                                </tr>
+                                </tbody>
+                              </Table>
                             </div>
                           </div>
+
                           <div className="ta" >
                             <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button">
-                              <i class="fas fa-chevron-left">&nbsp;&nbsp;</i>Önceki
+                              <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Önceki
              </Button>
                             <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button">
                               Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
@@ -763,8 +559,7 @@ export class randone extends Component {
             </div>
           </Row>
         </Container>
-
-      </>
+       </>
     );
   }
 }
