@@ -174,7 +174,7 @@ export class randone extends Component {
 
 
   onChangeHandle(key) {
-
+    {/**ff */}
     var form1 = document.getElementsByClassName("form1")[2];
     if (form1 != undefined) {
       var disabled = false;
