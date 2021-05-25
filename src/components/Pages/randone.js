@@ -1,35 +1,10 @@
 import React, { Component } from 'react'
-import { displayPartsToString } from "typescript";
-import ReactDatetime from "react-datetime";
 import axios from 'axios';
-//import { BrowserRouter, Route, Redirect, Switch, Router } from "react-router-dom";
-import IndexNavbar from "../Navbars/IndexNavbar.js";
-import DemoFooter from "components/Footers/DemoFooter.js";
 import {
-  Button,
-  Label,
-  Card,
-  Pagination,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  PaginationItem,
-  PaginationLink,
-  Form,
-  Modal,
-  Container,
-  Row,
-  Col,
-  UncontrolledTooltip,
-  PopoverBody,
-  PopoverHeader,
-  UncontrolledPopover,
-  Table,
+  Button, Label, Card, Pagination, FormGroup, Input, InputGroupAddon, InputGroupText, InputGroup,
+  PaginationItem, PaginationLink, Form, Modal, Container, Row, Col, UncontrolledTooltip, PopoverBody,
+  PopoverHeader, UncontrolledPopover, Table,
 } from "reactstrap";
-
-
 
 export class randone extends Component {
   constructor(props) {
@@ -44,7 +19,6 @@ export class randone extends Component {
       sel2: "",
       sel3: "",
       pagex: 1,
-      //data2:false,
       selectedDate: new Date(),
       zaman: "",
       dizi: [],
@@ -60,14 +34,15 @@ export class randone extends Component {
       name: "",
       lastname: "",
       fathername: "",
-      datetime: "",
+      datebird: "",
       email: "",
       addres: "",
       phone: "",
       passw: "",
       passw2: "",
       err: false,
-
+      isvalid: true,
+      isvalid2: true
     }
     this.onChangeHandle = this.onChangeHandle.bind(this)
   }
@@ -120,6 +95,47 @@ export class randone extends Component {
       console.log(err)
     })
   }
+  submithandle = () => {
+    if (this.state.compname != "") {
+      if (this.state.compstaff != "") {
+        document.getElementById("inputcompname").classList.remove("is-invalid");
+        document.getElementById("inputcompstaff").classList.remove("is-invalid");
+        if (this.state.compuser != "") {
+          document.getElementById("inputcompuser").classList.remove("is-invalid");
+          this.setState({ pagex: this.state.pagex + 1, })
+        }
+        else {
+          document.getElementById("inputcompuser").classList.add("is-invalid");
+        }
+      }
+      else {
+        document.getElementById("inputcompstaff").classList.add("is-invalid");
+        document.getElementById("inputcompuser").classList.add("is-invalid");
+      }
+    }
+    else {
+      document.getElementById("inputcompname").classList.add("is-invalid");
+      document.getElementById("inputcompstaff").classList.add("is-invalid");
+      document.getElementById("inputcompuser").classList.add("is-invalid");
+    }
+  }
+
+  handledate = () => {
+    if (this.state.compdate != "") {
+      if (this.state.comptimerr != "") {
+        this.setState({ pagex: this.state.pagex + 1, })
+      }
+      else {
+        
+        this.setState({ isvalid: false, isvalid2: true })
+      }
+    }
+    else {
+      this.setState({ isvalid: true })
+    }
+
+  }
+
 
   fonk = (e) => {
     this.setState({ page2: 4 })
@@ -138,84 +154,81 @@ export class randone extends Component {
     }).catch(err => {
       console.log(err)
     })
-
   }
   onClickhandlee = (e) => {
     var id = e.target.dataset.id;//button data-id deger ataması
     var array = this.state.data4[id];
     var deger4 = e.target.innerText;
+    this.setState({ comptimerr: '', isvalid:false })
     //console.log(deger4)
-    this.setState({ times: array, page: 5, compdate: deger4 })
+    this.setState({ times: array, compdate: deger4, page: 5 })
+    // document.getElementById("buttonx").style.background='#000000';
+    console.log(e.target)
+    var arr = [].slice.call(document.getElementsByClassName("hyy"))
+    arr.map(item => {
+      item.classList.remove("active")
+      var arr = [].slice.call(document.getElementsByClassName("tuu"))
+      arr.map(item => {
+        item.classList.remove("active")
+
+      })
+
+    })
+    e.target.classList.add("active")
+
   }
 
 
   show = (e) => {
     var deger5 = e.target.innerText;
     //console.log(deger5)
-    this.setState({ comptimerr: deger5, disabled: 1 })
+    this.setState({ comptimerr: deger5, disabled: 1 , isvalid2:false})
+    var arr = [].slice.call(document.getElementsByClassName("tuu"))
+    arr.map(item => {
+      item.classList.remove("active")
+    })
+    e.target.classList.add("active")
   }
 
-  handlesubmit = () => {
-    this.setState({ pagex: 2 })
-
-  }
-  handlesubmit2 = () => {
-    this.setState({ pagex: 3, disabled: 3 })
-
-  }
-  handlesubmitx = () => {
-    this.setState({ pagex: 1 })
-
-  }
-  handlesubmity = () => {
-    this.setState({ pagex: 4 })
-
+  handlesubmitplus = () => {
+    this.setState({ pagex: this.state.pagex + 1, })
+    //if(page )this.onChangeHandle()
   }
 
+  handlesubmitless = () => {
+    this.setState({ pagex: this.state.pagex - 1 })
+  }
+
+  handlepp = () => {
+   
+  }
+  
 
   onChangeHandle(key) {
-    {/**ff */}
     var form1 = document.getElementsByClassName("form1")[2];
     if (form1 != undefined) {
       var disabled = false;
 
       [].slice.call(form1.getElementsByTagName("input")).map((item, count) => {
         if (item.value == "") {
-          disabled = 3
+          item.classList.add("is-invalid");
         }
+        else{
+          item.classList.remove("is-invalid");
+          item.classList.add("is-valid");
+
+        }
+       
       })
+
       return e => {
         this.setState({
           [key]: e.target.value,
-          disabled: disabled != false ? disabled : this.state.disabled + 1
-        })
-      }
-    } else {
-      return e => {
-        this.setState({
-          [key]: e.target.value,
+         
+
         })
       }
     }
-  }
-
-  handleReset() {
-    Array.from(document.querySelectorAll("input")).forEach(
-      input => (input.value = "")
-    );
-    this.setState({
-      idtt: "",
-      name: "",
-      lastname: "",
-      fathername: "",
-      datetime: "",
-      email: "",
-      addres: "",
-      phone: "",
-      passw: "",
-      passw2: "",
-
-    });
   }
 
   submitt = (user) => {
@@ -224,7 +237,7 @@ export class randone extends Component {
       idtt: this.state.idtt,
       name: this.state.name,
       lastname: this.state.lastname,
-      datetime: this.state.datetime,
+      datebird: this.state.datebird,
       email: this.state.email,
       addres: this.state.addres,
       phone: this.state.phone,
@@ -240,12 +253,14 @@ export class randone extends Component {
       .then(res => {
         console.log(res);
         console.log("başarılı");
+        alert("Kayıt işleminiz gerçekleşmiştir.")
 
       }).catch(err => {
         console.log(err);
         console.log("başarısız");
+        alert("Kayıt işlemi başarısız... Lütfen tekrar deneyiniz!")
       })
-    alert("post işlemi")
+    //alert("post işlemi")
 
   }
 
@@ -256,7 +271,7 @@ export class randone extends Component {
     // console.log(this.state)
     return (
       <>
-        <IndexNavbar />
+
         <div className="page-header"
           style={{
             backgroundImage: "url(" + require("assets/img/axa.jpg").default + ")",
@@ -303,7 +318,7 @@ export class randone extends Component {
                                 <div className="title text-dark text-border " >
                                   <h5><span className="note bld ">İl </span></h5>
                                   <div className="select" >
-                                    <select class="custom-select" onInput={this.mett} aria-label=".form-select-lg example">
+                                    <select id="inputcompname" class="custom-select" onInput={this.mett} aria-label=".form-select-lg example">
                                       <option value="0" disabled="true" selected="true">il seçiniz</option>
 
                                       {this.state.data.map(item => {
@@ -318,7 +333,7 @@ export class randone extends Component {
                               <div className="col-md-12 col-lg-6 col-sm-12">
                                 <div className="title text-dark text-border bld " >
                                   <h5><span className="note bld">İlçe</span></h5>
-                                  <select class="custom-select form-select-lg col-md-12" onInput={this.ret} aria-label=".form-select-lg example">
+                                  <select class="custom-select form-select-lg col-md-12" id="inputcompstaff" onInput={this.ret} aria-label=".form-select-lg example">
                                     <option value="0" selected="true">ilçe seçiniz</option>
                                     {this.state.data2.map(index => {
                                       return (
@@ -334,7 +349,7 @@ export class randone extends Component {
                               <div className="col-md-12 col-lg-6 col-sm-12">
                                 <div className="title text-dark text-border bld " >
                                   <h5><span className="note bld">Doktor </span></h5>
-                                  <select class="custom-select form-select-lg col-md-12 " onInput={this.fonk} aria-label=".form-select-lg example">
+                                  <select class="custom-select form-select-lg col-md-12 " id="inputcompuser" onInput={this.fonk} aria-label=".form-select-lg example">
                                     <option value="0" disabled="true" selected="true">doktor seçiniz</option>
                                     {this.state.data3.map(inx => {
                                       return (
@@ -363,7 +378,8 @@ export class randone extends Component {
                                 </div>  */}
                             </Row>
                             <Row>
-                              <Button disabled={this.state.disabled == 1 ? true : false} className="btn-round mr-1 mla btn-lg" onClick={this.handlesubmit} color="danger" type="button">
+                              <Button className="btn-round mr-1 mla btn-lg" onClick={this.submithandle
+                              } color="danger" type="button">
                                 Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                               </Button>
                             </Row>
@@ -437,16 +453,17 @@ export class randone extends Component {
                                 <h5><span className="note bld">Randevu Tarihi</span></h5>
                               </div>
 
-                              <div className="asd row">
+                              <div className="asd row" >
                                 {this.state.data4.map((item, index) =>
 
                                   <div className={"col-lg-5"}>
                                     {console.log(item.date)}
                                     <Button
+
                                       color="success"
                                       size="lg"
                                       type="button"
-                                      className="ml-1 asdf"
+                                      className="ml-1 asdf hyy"
                                       data-id={index}
                                       onClick={this.onClickhandlee}
                                     >
@@ -456,6 +473,12 @@ export class randone extends Component {
 
                                 )}
                               </div>
+
+                              <div className={this.state.isvalid != false  ? 'fntc' : 'd-none'}>
+                                <h5>Lütfen tarih Seçiniz...</h5>
+                              </div>
+
+
 
                             </div>
 
@@ -477,21 +500,24 @@ export class randone extends Component {
 
                                     return (
 
-                                      <Button onClick={this.show} className="btn-1 ml-1" color="success" type="button">
+                                      <Button onClick={this.show} className="btn-1 ml-1 tuu" color="success" type="button">
                                         {item}
                                       </Button>
 
                                     )
-                                  }) : ''}</div>
+                                  }) : ''}
+                                </div>
 
+                              </div><div className={this.state.isvalid2 != false  ? 'fntc' : 'd-none'}>
+                                <h5>Lütfen tarih Seçiniz...</h5>
                               </div>
                             </div>
                           </Row>
                           <div className="ta" >
-                            <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button" onClick={this.handlesubmitx} >
+                            <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button" onClick={this.handlesubmitless} >
                               <i class="fas fa-chevron-left">&nbsp;&nbsp;Önceki</i>
                             </Button>
-                            <Button className="btn-round mr-1 mla btn-lg" disabled={this.state.disabled == 2 ? true : false} color="danger" onClick={this.handlesubmit2} type="button">
+                            <Button className="btn-round mr-1 mla btn-lg" color="danger" onClick={this.handledate} type="button">
                               Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                             </Button>
                           </div>
@@ -508,7 +534,7 @@ export class randone extends Component {
                 <Col className=" rml-auto mr-auto mw-100 " >
                   <Card className="card-register ml-auto mr-auto" style={{ padding: "10px" }} >
 
-                    <div className="as1" >
+                    <div className=" as1" >
 
                       <div className="asic mrr col-md-6 ytt">
                         <div className="title text-dark text-border  " >
@@ -599,7 +625,7 @@ export class randone extends Component {
                                       Doğum Tarihi
               </div>
                                     <div className="col-md-8">
-                                      <Input placeholder="Default" type="text" value={this.state.datebird} onChange={this.onChangeHandle("datebird")} />
+                                      <Input placeholder="Default" data- type="text" value={this.state.datebird} onChange={this.onChangeHandle("datebird")} />
                                     </div>
                                   </div>
                                 </FormGroup>
@@ -629,7 +655,7 @@ export class randone extends Component {
                                       Adres
       </div>
                                     <div className="col-md-8">
-                                      <Input id="test" placeholder="Default" className="form-control" type="text" value={this.state.addres} onChange={this.onChangeHandle("addres")} />
+                                      <Input placeholder="Default" className="form-control" type="text" value={this.state.addres} onChange={this.onChangeHandle("addres")} />
                                     </div>
                                   </div>
                                 </div>
@@ -665,28 +691,20 @@ export class randone extends Component {
                                       Şifre (Tekrar)
           </div>
                                     <div className="col-md-8">
-                                      <Input placeholder="Default" className="form-control" type="text" value={this.state.passw2} onChange={this.onChangeHandle("passw2")} />
-                                      <div className="text-danger">{this.state.err == true ? "şifre aynı değil" : ""}</div>
+                                      <Input id="inputdeneme" placeholder="Default" className="form-control" type="text" value={this.state.passw2} onChange={this.onChangeHandle("passw2")} />
+
                                     </div>
                                   </div>
                                 </div>
 
                                 {/*t-ı*/}
                               </div>
-
                             </Row>
-
-                            <div className="ta mt-3" >
-
-                              <Button className="cre mra" color="success" outline size="lg" type="Button" onClick={this.handleReset}>
-                                <i class="far fa-trash-alt"></i>&nbsp; Temizle
-  </Button>
-                            </div>
                             <div className="ta" >
-                              <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button" onClick={this.handlesubmit} >
-                                <i class="fas fa-chevron-left">&nbsp;&nbsp;Önceki</i>
+                              <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button" onClick={this.handlesubmitless} >
+                                <i class="fas fa-chevron-left">&nbsp;&nbsp;</i>Önceki
                               </Button>
-                              <Button className="btn-round mr-1 mla btn-lg" disabled={this.state.disabled == 3 ? true : false} color="danger" onClick={this.handlesubmity} type="button">
+                              <Button className="btn-round mr-1 mla btn-lg"  color="danger" onClick={this.handlepp} type="button">
                                 Sonraki&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                               </Button>
                             </div>
@@ -823,12 +841,13 @@ export class randone extends Component {
                             </div>
 
                             <div className="ta" >
-                              <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button" onClick={this.handlesubmit2}>
+                              <Button className="btn-round mr-1 mra btn-lg" color="dark" type="button" onClick={this.handlesubmitless}>
                                 <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Önceki
                                   </Button>
-                              <Button className="btn-round mr-1 mla btn-lg" color="danger" type="button" onClick={this.submitt} >
-                                Submit&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
-                              </Button>
+
+                              <Button className="cre mla" color="info" outline size="lg" type="button" onClick={this.submitt} >
+                                <i class="fas fa-check"></i>&nbsp;Kaydet
+                </Button>
                             </div>
                           </Container>
                         </Form>
