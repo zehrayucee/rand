@@ -4445,8 +4445,12 @@ License - nucleoapp.com/license/
   border-radius: 8px;
   color: rgb(22, 2, 2);
   /* max-width: 350px; */
-  margin: 30px 0 3px;
-  min-height: 400px; 
+  margin:46px;
+  min-width: 80%; 
+  max-width: 90%;
+  min-height: 600px; 
+  max-height: 700px;
+  
   padding: 30px; }
   .card-register label {
     margin-top: 15px; }
