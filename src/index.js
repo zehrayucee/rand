@@ -14,7 +14,7 @@ import Layoutpage from "components/layout/layoutpage.js";
 
 // pages
 import Randone from "components/Pages/randone.js";
-import Randdate from "components/Pages/randdate.js";
+
 import Rand from "components/Pages/rand.js";
 import Customercreate from "components/Pages/Customercreate.js";
 import Passwordnew from "components/Pages/Passwordnew.js";
@@ -43,10 +43,7 @@ ReactDOM.render(
         path="/layoutpage"
         render={(props) => <Layoutpage {...props} />}
       />
-      <Route
-        path="/randdate"
-        render={(props) => <Randdate {...props} />}
-      />
+     
       <Route
         path="/randone"
         render={(props) => <Randone {...props} />}

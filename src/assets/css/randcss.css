@@ -4441,15 +4441,15 @@ License - nucleoapp.com/license/
     border-radius: 12px; }
 
 .card-register {
-  background-color: #6bd098;
+  background-color: #f0f0f0;
   border-radius: 8px;
   color: rgb(22, 2, 2);
   /* max-width: 350px; */
   margin:46px;
   min-width: 80%; 
   max-width: 90%;
-  min-height: 600px; 
-  max-height: 700px;
+  
+  max-height: 1400px;
   
   padding: 30px; }
   .card-register label {
@@ -4470,7 +4470,7 @@ License - nucleoapp.com/license/
       border-radius: 8px;
       color: #fff;
       width: 100%;
-      margin: 50px 50px 50px 50px;
+      
       height: 550px;
       padding: 30px; }
       .card-registers label {
